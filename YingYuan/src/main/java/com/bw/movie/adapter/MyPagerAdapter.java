@@ -3,7 +3,6 @@ package com.bw.movie.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.text.Layout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ public class MyPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        Layout layout = new Layout(context);
+        ImageView imageView = new ImageView(context);
         imageView.setImageResource(list.get(position));
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         container.addView(imageView);
