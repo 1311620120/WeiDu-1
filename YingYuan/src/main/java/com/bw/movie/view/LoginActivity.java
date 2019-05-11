@@ -42,6 +42,9 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
     public static SharedPreferences sp;
     public static SharedPreferences.Editor edit;
     public static String key = "";
+    private SharedPreferences user;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,19 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
         presenterInter = new MyPresenter<>(this);
         sp = getSharedPreferences("myId", MODE_PRIVATE);
         edit = sp.edit();
+        user = getSharedPreferences("user", MODE_PRIVATE);
+        editor = user.edit();
+        boolean flag = user.getBoolean("flag",false);
+        loginCheckboxPwdId.setChecked(flag);
+        if (flag){
+            String phone = user.getString("phone", null);
+            String pwd = user.getString("pwd", null);
+            phoneId.setText(phone);
+            pwdId.setText(pwd);
+        }else {
+            phoneId.setText("");
+            pwdId.setText("");
+        }
     }
 
     @OnClick({R.id.login_checkbox_pwd_id, R.id.login_checkbox_phone_id, R.id.to_register, R.id.intent_login})
@@ -70,6 +86,14 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
                 Map<String,String> map = new HashMap<>();
                 map.put("phone",phone);
                 map.put("pwd",encrypt);
+                if (loginCheckboxPwdId.isChecked()){
+                    editor.putString("phone",phone);
+                    editor.putString("pwd",pwd);
+                    editor.putBoolean("flag",true);
+                }else {
+                    editor.putBoolean("flag",false);
+                }
+                editor.commit();
                 presenterInter.toLogin(map);
                 break;
         }
