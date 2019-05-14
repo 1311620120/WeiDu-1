@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/cinema_img"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:src="@mipmap/cinema_xhdpi"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cinema_weizhi"
+        android:text="北京"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_60"
+      />
+    <LinearLayout
+        android:id="@+id/la"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/select_Cinema_but_tui"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/dp_32"
+            android:text="推荐影院"/>
+        <TextView
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:id="@+id/select_Cinema_but_fujin"
+            android:text="附近电影"/>
+    </LinearLayout>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:layout_below="@+id/la"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/select_cinema_recycler"
+        android:visibility="visible"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:layout_below="@+id/la"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/select_Cinemafu_recycler"
+        android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
+</RelativeLayout>

@@ -28,7 +28,7 @@ public class MyModel implements MyInterface.ModelInter {
     @Override
     public void doPost(String url, Map<String, String> map, final MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
-        RetrofitUtil.getRetrofitUtil().getApi(Api.class)
+        RetrofitUtil.getInstance().getApi(Api.class)
                 .requestPost(url,map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,7 +45,7 @@ public class MyModel implements MyInterface.ModelInter {
     @Override
     public void doLogin(Map<String, String> map, final MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
-        RetrofitUtil.getRetrofitUtil().getApi(Api.class)
+        RetrofitUtil.getInstance().getApi(Api.class)
                 .requestLogin(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -3,9 +3,13 @@
     package="com.bw.movie.view">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +26,11 @@
         <activity android:name=".PagerActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ViewActivity"></activity>
+        <activity android:name=".ViewActivity" />
+        <activity android:name="com.bw.movie.activity.PersonalActivity" />
+        <activity android:name="com.bw.movie.activity.MegessActivity" />
+        <activity android:name="com.bw.movie.activity.GuanzuActivity" />
+        <activity android:name="com.bw.movie.activity.ShopingActivity"></activity>
     </application>
 
 </manifest>

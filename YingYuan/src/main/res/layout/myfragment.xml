@@ -16,13 +16,22 @@
         android:layout_marginLeft="@dimen/dp_30"
         android:id="@+id/My_megess"
         android:src="@mipmap/my_icon_remind_default_xhdpi"/>
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_60"
         android:layout_width="@dimen/dp_70"
         android:layout_height="@dimen/dp_70"
         android:src="@mipmap/hdpi"
         />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:text="哈哈哈哈"
+        android:layout_marginBottom="@dimen/dp_24"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

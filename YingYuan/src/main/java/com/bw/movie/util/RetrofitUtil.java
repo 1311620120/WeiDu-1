@@ -26,6 +26,7 @@ public class RetrofitUtil {
     Retrofit retrofit;
     private String userId = "1";
     private String sessionId = "1";
+    public Api api;
 
     private RetrofitUtil(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLogging());
@@ -45,13 +46,13 @@ public class RetrofitUtil {
                 .addNetworkInterceptor(interceptor)
                 .build();
     }
-    public static synchronized RetrofitUtil getRetrofitUtil(){
-        if (retrofitUtil == null){
-            retrofitUtil = new RetrofitUtil();
-        }
-        return retrofitUtil;
+    private static class HttpUtils {
+        private static RetrofitUtil retrofitUtil = new RetrofitUtil();
     }
 
+    public static RetrofitUtil getInstance() {
+        return HttpUtils.retrofitUtil;
+    }
     public Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
@@ -60,6 +61,7 @@ public class RetrofitUtil {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
+            api = retrofit.create(Api.class);
         }
         return retrofit;
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bw.movie.activity.GuanzuActivity">
+    <LinearLayout
+        android:id="@+id/laa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/My_film"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/dp_32"
+            android:text="关注电影"/>
+        <TextView
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:textSize="@dimen/sp_14"
+            android:id="@+id/My_Cinema"
+            android:text="关注影院"/>
+    </LinearLayout>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:layout_below="@+id/laa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_film_recycler"
+        android:visibility="visible"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+ <com.jcodecraeer.xrecyclerview.XRecyclerView
+    android:layout_below="@+id/laa"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/my_Cinema_recycler"
+     android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
+    <ImageView
+        android:layout_width="@dimen/dp_60"
+        android:layout_alignParentBottom="true"
+        android:layout_height="@dimen/dp_60"
+        android:background="@mipmap/my_default_xhdip"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:id="@+id/My_film_cinemaBack"/>
+</RelativeLayout>
