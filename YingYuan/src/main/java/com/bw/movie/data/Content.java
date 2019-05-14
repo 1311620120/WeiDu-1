@@ -6,6 +6,18 @@ package com.bw.movie.data;
  * @Description:
  */
 public class Content {
+    //注册
     public static final String Register = "movieApi/user/v1/registerUser";
+    //登录
     public static final String Login = "movieApi/user/v1/login";
+    //查询热门电影列表
+    public static final String HotMovie = "movieApi/movie/v1/findHotMovieList";
+    //查询正在上映电影列表
+    public static final String ReleaseMovie = "movieApi/movie/v1/findReleaseMovieList";
+    //查询即将上映电影列表
+    public static final String ComingSoonMovie = "movieApi/movie/v1/findComingSoonMovieList";
+    //关注
+    public static final String FollowMovie = "movieApi/movie/v1/verify/followMovie";
+    //取关
+    public static final String CancelFollowMovie = "movieApi/movie/v1/verify/cancelFollowMovie";
 }

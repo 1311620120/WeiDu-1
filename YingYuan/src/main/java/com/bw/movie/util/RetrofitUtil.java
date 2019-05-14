@@ -22,10 +22,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitUtil {
     OkHttpClient okHttpClient;
-    static RetrofitUtil retrofitUtil;
     Retrofit retrofit;
     private String userId = "1";
     private String sessionId = "1";
+    public Api api;
 
     private RetrofitUtil(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLogging());
@@ -45,13 +45,20 @@ public class RetrofitUtil {
                 .addNetworkInterceptor(interceptor)
                 .build();
     }
-    public static synchronized RetrofitUtil getRetrofitUtil(){
-        if (retrofitUtil == null){
-            retrofitUtil = new RetrofitUtil();
-        }
-        return retrofitUtil;
+    private static class HttpUtils {
+        private static RetrofitUtil retrofitUtil = new RetrofitUtil();
+<<<<<<< HEAD
+=======
     }
 
+    public static RetrofitUtil getInstance() {
+        return HttpUtils.retrofitUtil;
+>>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
+    }
+
+    public static RetrofitUtil getInstance() {
+        return HttpUtils.retrofitUtil;
+    }
     public Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
@@ -60,6 +67,7 @@ public class RetrofitUtil {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
+            api = retrofit.create(Api.class);
         }
         return retrofit;
     }
@@ -70,6 +78,7 @@ public class RetrofitUtil {
                 sessionId = LoginActivity.sp.getString("sessionId", "1");
             }
         }
+        Log.i("tag",userId+sessionId);
         return getRetrofit().create(service);
     }
     public class HttpLogging implements HttpLoggingInterceptor.Logger{
