@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+=======
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+>>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/cinema_img"

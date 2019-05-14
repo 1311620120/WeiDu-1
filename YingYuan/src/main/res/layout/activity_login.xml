@@ -140,6 +140,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_30"
+            android:id="@+id/wx_deng_lu_id"
             android:layout_marginTop="@dimen/dp_20"
             android:src="@mipmap/log_icon_weixin_default_hdpi"
             android:layout_gravity="center"/>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@mipmap/movie_item_bg"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="@dimen/dp_130">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_120"
+                android:padding="@dimen/dp_10">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#fff"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_15"
+                    android:id="@+id/detail_title_id"
+                    android:text="11111"/>
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:id="@+id/detail_follow_id"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#fff"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_title_id"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:id="@+id/detail_summary_id"
+                    android:textSize="@dimen/sp_13"/>
+        </RelativeLayout>
+    </RelativeLayout>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_130"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/detail_simple_id"/>
+    </RelativeLayout>
+</RelativeLayout>

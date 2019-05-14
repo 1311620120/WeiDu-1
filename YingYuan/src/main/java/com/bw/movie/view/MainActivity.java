@@ -11,14 +11,14 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    int i = 2;
+    int i = 1;
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             i--;
             if (i < 1){
-                Intent intent = new Intent(MainActivity.this,PagerActivity.class);
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
             }else {

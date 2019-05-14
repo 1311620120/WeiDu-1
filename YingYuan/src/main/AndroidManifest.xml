@@ -5,8 +5,14 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+=======
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+>>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
 
     <application
         android:name=".App"
@@ -27,10 +33,24 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ViewActivity" />
+<<<<<<< HEAD
         <activity android:name="com.bw.movie.activity.PersonalActivity" />
         <activity android:name="com.bw.movie.activity.MegessActivity" />
         <activity android:name="com.bw.movie.activity.GuanzuActivity" />
         <activity android:name="com.bw.movie.activity.ShopingActivity"></activity>
+=======
+        <activity android:name=".MovieDetailActivity" />
+        <activity android:name=".DYDetailActivity" />
+
+        <meta-data
+            android:name="5cda16ab0cafb251e0000975"
+            android:value="YOUR_APP_KEY" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+
+        <activity android:name=".KicketActivity"></activity>
+>>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
     </application>
 
 </manifest>
