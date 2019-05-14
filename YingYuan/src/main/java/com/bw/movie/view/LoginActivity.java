@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
     public static SharedPreferences sp;
     public static SharedPreferences.Editor edit;
     public static String key = "";
+    @BindView(R.id.wx_deng_lu_id)
+    ImageView wxDengLuId;
     private SharedPreferences user;
     private SharedPreferences.Editor editor;
 
@@ -55,14 +58,21 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
         edit = sp.edit();
         user = getSharedPreferences("user", MODE_PRIVATE);
         editor = user.edit();
-        boolean flag = user.getBoolean("flag",false);
+        boolean b = user.getBoolean("b", false);
+        boolean flag = user.getBoolean("flag", false);
         loginCheckboxPwdId.setChecked(flag);
-        if (flag){
+        loginCheckboxPhoneId.setChecked(b);
+        if (b) {
+            Intent intent = new Intent(this, ViewActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (flag) {
             String phone = user.getString("phone", null);
             String pwd = user.getString("pwd", null);
             phoneId.setText(phone);
             pwdId.setText(pwd);
-        }else {
+        } else {
             phoneId.setText("");
             pwdId.setText("");
         }
@@ -76,22 +86,27 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
             case R.id.login_checkbox_phone_id:
                 break;
             case R.id.to_register:
-                Intent intent = new Intent(this,RegisterActivity.class);
+                Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
             case R.id.intent_login:
                 String phone = phoneId.getText().toString();
                 String pwd = pwdId.getText().toString();
                 String encrypt = EncryptUtil.encrypt(pwd);
-                Map<String,String> map = new HashMap<>();
-                map.put("phone",phone);
-                map.put("pwd",encrypt);
-                if (loginCheckboxPwdId.isChecked()){
-                    editor.putString("phone",phone);
-                    editor.putString("pwd",pwd);
-                    editor.putBoolean("flag",true);
-                }else {
-                    editor.putBoolean("flag",false);
+                Map<String, String> map = new HashMap<>();
+                map.put("phone", phone);
+                map.put("pwd", encrypt);
+                if (loginCheckboxPwdId.isChecked()) {
+                    editor.putString("phone", phone);
+                    editor.putString("pwd", pwd);
+                    editor.putBoolean("flag", true);
+                } else {
+                    editor.putBoolean("flag", false);
+                }
+                if (loginCheckboxPhoneId.isChecked()) {
+                    editor.putBoolean("b", true);
+                } else {
+                    editor.putBoolean("b", false);
                 }
                 editor.commit();
                 presenterInter.toLogin(map);
@@ -102,19 +117,24 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
     @Override
     public void showLogin(Object object) {
         LoginBean bean = (LoginBean) object;
-        if (bean != null){
-            Toast.makeText(this,bean.getMessage(),Toast.LENGTH_SHORT).show();
-            if (bean.getMessage().equals("登陆成功")){
+        if (bean != null) {
+            Toast.makeText(this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+            if (bean.getMessage().equals("登陆成功")) {
                 key = bean.getMessage();
-                Log.i("tag",bean.getResult().getUserId()+"--"+bean.getResult().getSessionId());
+                Log.i("tag", bean.getResult().getUserId() + "--" + bean.getResult().getSessionId());
                 edit.clear();
                 edit.putString("userId", String.valueOf(bean.getResult().getUserId()));
-                edit.putString("sessionId",bean.getResult().getSessionId());
+                edit.putString("sessionId", bean.getResult().getSessionId());
                 edit.commit();
-                Intent intent = new Intent(this,ViewActivity.class);
+                Intent intent = new Intent(this, ViewActivity.class);
                 startActivity(intent);
                 finish();
             }
         }
+    }
+
+    @OnClick(R.id.wx_deng_lu_id)
+    public void onViewClicked() {
+
     }
 }

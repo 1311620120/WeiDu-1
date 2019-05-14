@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitUtil {
     OkHttpClient okHttpClient;
-    static RetrofitUtil retrofitUtil;
     Retrofit retrofit;
     private String userId = "1";
     private String sessionId = "1";
@@ -45,11 +44,12 @@ public class RetrofitUtil {
                 .addNetworkInterceptor(interceptor)
                 .build();
     }
-    public static synchronized RetrofitUtil getRetrofitUtil(){
-        if (retrofitUtil == null){
-            retrofitUtil = new RetrofitUtil();
-        }
-        return retrofitUtil;
+    private static class HttpUtils {
+        private static RetrofitUtil retrofitUtil = new RetrofitUtil();
+    }
+
+    public static RetrofitUtil getInstance() {
+        return HttpUtils.retrofitUtil;
     }
 
     public Retrofit getRetrofit(){
@@ -70,6 +70,7 @@ public class RetrofitUtil {
                 sessionId = LoginActivity.sp.getString("sessionId", "1");
             }
         }
+        Log.i("tag",userId+sessionId);
         return getRetrofit().create(service);
     }
     public class HttpLogging implements HttpLoggingInterceptor.Logger{

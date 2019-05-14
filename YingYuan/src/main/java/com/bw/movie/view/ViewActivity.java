@@ -22,12 +22,13 @@ public class ViewActivity extends AppCompatActivity {
 
 
         buttonBar.init(getSupportFragmentManager())
-                .setTabBarBackgroundColor(0x0FFF)
+                .setTabBarBackgroundColor(0x0fff)
                 .setFontSize(0)
                 .setImgSize(100,100)
-                .addTabItem("",R.mipmap.film_fault_xhdpi,R.mipmap.film_fault_xhdpi,FilmFragment.class)
+                .addTabItem("",R.mipmap.film_selected_xhdpi,R.mipmap.film_fault_xhdpi,FilmFragment.class)
                 .addTabItem("",R.mipmap.selected_xhdpi,R.mipmap.default_xhdpi,CinemaFragment.class)
-                .addTabItem("",R.mipmap.icon_my_selected_xhdpi,R.mipmap.icon_my_default_xhdpi,MyFragment.class);
+                .addTabItem("",R.mipmap.icon_my_selected_xhdpi,R.mipmap.icon_my_default_xhdpi,MyFragment.class)
+                .isShowDivider(false);
 
     }
 }

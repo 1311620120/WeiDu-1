@@ -2,16 +2,19 @@ package com.bw.movie.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.bw.movie.adapter.MyPagerAdapter;
+import com.bw.movie.fragmentpage.FourFragment;
+import com.bw.movie.fragmentpage.OneFragment;
+import com.bw.movie.fragmentpage.ThreeFragment;
+import com.bw.movie.fragmentpage.TwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +27,9 @@ public class PagerActivity extends AppCompatActivity {
 
     @BindView(R.id.viewPager_id)
     ViewPager viewPagerId;
-    @BindView(R.id.pager_name)
-    TextView pagerName;
-    @BindView(R.id.pager_title)
-    TextView pagerTitle;
     @BindView(R.id.radioGroup_id)
     RadioGroup radioGroupId;
-    List<Integer> list = new ArrayList<>();
+    List<Fragment> list = new ArrayList<>();
     @BindView(R.id.rb1)
     RadioButton rb1;
     @BindView(R.id.rb2)
@@ -47,13 +46,11 @@ public class PagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager);
         ButterKnife.bind(this);
-        pagerName.setText("一场电影");
-        pagerTitle.setText("净化你的灵魂");
-        list.add(R.layout.tuceng1);
-        list.add(R.drawable.tuceng2);
-        list.add(R.drawable.tuceng3);
-        list.add(R.drawable.tuceng4);
-        MyPagerAdapter adapter = new MyPagerAdapter(list, this);
+        list.add(new OneFragment());
+        list.add(new TwoFragment());
+        list.add(new ThreeFragment());
+        list.add(new FourFragment());
+        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(),list, this);
         viewPagerId.setAdapter(adapter);
         viewPagerId.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -72,23 +69,15 @@ public class PagerActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                         rb1.setChecked(true);
-                        pagerName.setText("一场电影");
-                        pagerTitle.setText("净化你的灵魂");
                         break;
                     case 1:
                         rb2.setChecked(true);
-                        pagerName.setText("一场电影");
-                        pagerTitle.setText("看遍人生百态");
                         break;
                     case 2:
                         rb3.setChecked(true);
-                        pagerName.setText("一场电影");
-                        pagerTitle.setText("荡涤你的心灵");
                         break;
                     case 3:
                         rb4.setChecked(true);
-                        pagerName.setText("八维移动通信学院作品");
-                        pagerTitle.setText("带您开启一段美好的电影之旅");
                         break;
                 }
             }

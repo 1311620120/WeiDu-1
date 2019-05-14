@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.PostBean;
+import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.data.Content;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.model.MyModel;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,6 +24,17 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
     public MyPresenter(T tt) {
         modelInter = new MyModel();
         this.tt = tt;
+    }
+
+    @Override
+    public void toComment(Map<String, String> map) {
+        final MyInterface.ViewInter.CommentInter commentInter = (MyInterface.ViewInter.CommentInter) tt;
+        modelInter.doComment(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                commentInter.showComment(object);
+            }
+        });
     }
 
     @Override
@@ -47,13 +60,80 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
     }
 
     @Override
-    public void toLogi(Map<String, String> map) {
-        modelInter.doLogin(map, new MyModel.MyCallBack() {
+    public void toHotMovie() {
+        final MyInterface.ViewInter.HotMovie hotMovie = (MyInterface.ViewInter.HotMovie) tt;
+        Map<String,String> map = new HashMap<>();
+        map.put("page","1");
+        map.put("count","15");
+        modelInter.doMovieShow(Content.HotMovie, map, new MyModel.MyCallBack() {
             @Override
             public void success(Object object) {
+                hotMovie.HotMovie(object);
             }
         });
     }
+
+    @Override
+    public void toReleaseMovie() {
+        final MyInterface.ViewInter.ReleaseMovie releaseMovie = (MyInterface.ViewInter.ReleaseMovie) tt;
+        Map<String,String> map = new HashMap<>();
+        map.put("page","1");
+        map.put("count","15");
+        modelInter.doMovieShow(Content.ReleaseMovie, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                releaseMovie.ReleaseMovie(object);
+            }
+        });
+    }
+
+    @Override
+    public void toComingSoonMovie() {
+        final MyInterface.ViewInter.ComingSoonMovie comingSoonMovie = (MyInterface.ViewInter.ComingSoonMovie) tt;
+        Map<String,String> map = new HashMap<>();
+        map.put("page","1");
+        map.put("count","15");
+        modelInter.doMovieShow(Content.ComingSoonMovie, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                comingSoonMovie.ComingSoonMovie(object);
+            }
+        });
+    }
+
+    @Override
+    public void toMovieDetail(int movieId) {
+        final MyInterface.ViewInter.DetailInter detailInter = (MyInterface.ViewInter.DetailInter) tt;
+        modelInter.doMovieDetail(movieId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                detailInter.ShowMovieDetail(object);
+            }
+        });
+    }
+
+    @Override
+    public void toFollowMovie(int movieId) {
+        final MyInterface.ViewInter.FollowInter followInter = (MyInterface.ViewInter.FollowInter) tt;
+        modelInter.doGet(Content.FollowMovie,movieId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                followInter.FollowMovie((String) object);
+            }
+        });
+    }
+
+    @Override
+    public void toCancelFollowMovie(int movieId) {
+        final MyInterface.ViewInter.FollowInter followInter = (MyInterface.ViewInter.FollowInter) tt;
+        modelInter.doGet(Content.CancelFollowMovie,movieId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                followInter.CancelFollowMovie((String) object);
+            }
+        });
+    }
+
 
     @Override
     public void onDestroy() {
