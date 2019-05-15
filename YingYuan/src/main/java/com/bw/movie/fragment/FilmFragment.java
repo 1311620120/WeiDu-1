@@ -98,6 +98,7 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
         filmComingSoonRecyclerId.setAdapter(adapter3);
         filmReleaseRecyclerId.setLayoutManager(layoutManager2);
         filmComingSoonRecyclerId.setLayoutManager(layoutManager3);
+
         adapter = new MyCoverFlowAdapter(list, getActivity());
         filmRecyclerFlowId.setAdapter(adapter);
         presenterInter.toHotMovie();

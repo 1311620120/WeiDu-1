@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-=======
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"/>
     <ImageView
         android:id="@+id/cinema_img"
         android:layout_width="@dimen/dp_24"
@@ -61,6 +61,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/select_Cinemafu_recycler"
         android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
-
 
 </RelativeLayout>

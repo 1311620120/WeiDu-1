@@ -85,8 +85,14 @@ public class PersonalActivity extends AppCompatActivity implements IMainView {
         personalNane.setText(nickName);
         String phone = result.getPhone();
         personalPhonr.setText(phone);
-        String sex = result.getSex();
-        personalSex.setText(sex);
+
+        int sex = result.getSex();
+        if (sex==1){
+            personalSex.setText("男");
+        }else  if (sex==2){
+            personalSex.setText("女");
+        }
+
     }
 
     @OnClick({R.id.personal_nane, R.id.personal_sex, R.id.personal_birboth, R.id.personal_phonr, R.id.personal_enilo, R.id.personal_pwd, R.id.relativelayou, R.id.personal_back})

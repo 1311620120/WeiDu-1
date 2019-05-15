@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewActivity"
-    android:background="#f00">
+    >
 <com.hjm.bottomtabbar.BottomTabBar
     android:layout_width="match_parent"
     android:layout_height="match_parent"

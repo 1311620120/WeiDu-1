@@ -2,7 +2,7 @@ package com.bw.movie.util;
 
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.LoginBean;
-<<<<<<< HEAD
+
 import com.bw.movie.bean.My_CinemaBean;
 import com.bw.movie.bean.My_HeadPicBean;
 import com.bw.movie.bean.My_MegessBean;
@@ -10,11 +10,12 @@ import com.bw.movie.bean.My_ShopBean;
 import com.bw.movie.bean.My_filmBean;
 import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.bean.Select_CinemaBean;
+import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
-=======
+
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
+
 import com.bw.movie.data.Content;
 
 import java.io.File;
@@ -23,17 +24,16 @@ import java.util.Map;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-<<<<<<< HEAD
+
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-=======
-import retrofit2.http.POST;
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
+
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -52,7 +52,7 @@ public interface Api {
     @FormUrlEncoded
     @POST(Content.Login)
     Observable<LoginBean> requestLogin(@FieldMap Map<String, String> map);
-<<<<<<< HEAD
+
    //查询用户信息
     @GET("movieApi/user/v1/verify/getUserInfoByUserId")
     Observable<My_ziliaoBean> Ziliao(@Header("userId") String userId, @Header("sessionId") String sessionId);
@@ -93,7 +93,7 @@ public interface Api {
     Observable<Select_CinmaBeanFu> select_fujin(@Header("userId") String userId,
                                                 @Header("sessionId") String sessionId,
                                                 @Query("page")int page, @Query("count") int count);
-=======
+
     //首页展示请求
     @GET()
     Observable<ShowMovieBean> requestMovieShow(@Url String url, @QueryMap Map<String,String> map);
@@ -106,6 +106,16 @@ public interface Api {
     //关注/取关
     @GET()
     Observable<ResponseBody> requestGet(@Url String url,@Query("movieId") int movieId);
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
-
+//根据影院Id 影院Id查询电影排挡
+@GET("movieApi/movie/v1/findMovieScheduleList")
+Observable<Select_CinemaIdBean> SelectCinemaId(@Header("userId") String userId,
+                                               @Header("sessionId") String sessionId,
+                                               @Query("cinemasId") int cinemasId,
+                                               @Query("movieId") int movieId);
+   // 意见反馈  http://172.17.8.100/movieApi/tool/v1/verify/recordFeedBack
+   @FormUrlEncoded
+   @POST("movieApi/tool/v1/verify/recordFeedBack")
+   Observable<ResponseBody> minessss(@Header("userId") String userId,
+                                        @Header("sessionId") String sessionId,
+                                        @Field("content") String content);
 }

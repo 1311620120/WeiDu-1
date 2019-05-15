@@ -47,18 +47,14 @@ public class RetrofitUtil {
     }
     private static class HttpUtils {
         private static RetrofitUtil retrofitUtil = new RetrofitUtil();
-<<<<<<< HEAD
-=======
+
     }
 
     public static RetrofitUtil getInstance() {
         return HttpUtils.retrofitUtil;
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
+
     }
 
-    public static RetrofitUtil getInstance() {
-        return HttpUtils.retrofitUtil;
-    }
     public Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()

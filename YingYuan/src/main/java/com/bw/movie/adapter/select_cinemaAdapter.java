@@ -1,8 +1,10 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,15 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
+import com.bw.movie.view.App;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +44,7 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
                 holder.cineam_diess.setText(result.get(position).getAddress());
                 holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
@@ -49,7 +56,21 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
         }if (followCinema==2){
           holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
     }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                Intent intent = new Intent(context, Select_CineamActivity.class);
+                intent.putExtra("id",result.get(position).getId());
+                intent.putExtra("name",result.get(position).getName());
+                intent.putExtra("logo",result.get(position).getLogo());
+                intent.putExtra("saddress", result.get(position).getAddress());
+                context.startActivity(intent);
+
+
+            }
+        });
 }
 
 
