@@ -2,9 +2,12 @@ package com.bw.movie.util;
 
 import android.util.Log;
 
+import com.bw.movie.bean.MyIdBean;
+import com.bw.movie.view.App;
 import com.bw.movie.view.LoginActivity;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -23,8 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitUtil {
     OkHttpClient okHttpClient;
     Retrofit retrofit;
-    private String userId = "1";
-    private String sessionId = "1";
+    private int userId;
+    private String sessionId;
     public Api api;
 
     private RetrofitUtil(){
@@ -36,8 +39,8 @@ public class RetrofitUtil {
                     public Response intercept(Chain chain) throws IOException {
                         Request build = chain.request()
                                 .newBuilder()
-                                .addHeader("userId", userId)
-                                .addHeader("sessionId", sessionId)
+                                .addHeader("userId", String.valueOf(userId))
+                                .addHeader("sessionId", String.valueOf(sessionId))
                                 .build();
                         return chain.proceed(build);
                     }
@@ -47,18 +50,13 @@ public class RetrofitUtil {
     }
     private static class HttpUtils {
         private static RetrofitUtil retrofitUtil = new RetrofitUtil();
-<<<<<<< HEAD
-=======
-    }
 
-    public static RetrofitUtil getInstance() {
-        return HttpUtils.retrofitUtil;
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
     }
 
     public static RetrofitUtil getInstance() {
         return HttpUtils.retrofitUtil;
     }
+
     public Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
@@ -72,13 +70,13 @@ public class RetrofitUtil {
         return retrofit;
     }
     public <T>T getApi(Class<T> service){
-        if (userId == "1" && sessionId == "1"){
-            if (LoginActivity.key.equals("登陆成功")){
-                userId = LoginActivity.sp.getString("userId", "1");
-                sessionId = LoginActivity.sp.getString("sessionId", "1");
-            }
+        List<MyIdBean> list = App.dao.getMyIdBeanDao().loadAll();
+        Log.e("tag",list.toString());
+        if (list.size() != 0){
+            userId = list.get(0).getUserId();
+            sessionId = list.get(0).getSessionId();
         }
-        Log.i("tag",userId+sessionId);
+        Log.i("tag", this.userId + this.sessionId);
         return getRetrofit().create(service);
     }
     public class HttpLogging implements HttpLoggingInterceptor.Logger{

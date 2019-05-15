@@ -20,4 +20,10 @@ public class Content {
     public static final String FollowMovie = "movieApi/movie/v1/verify/followMovie";
     //取关
     public static final String CancelFollowMovie = "movieApi/movie/v1/verify/cancelFollowMovie";
+    //发布评论
+    public static final String MovieComment = "movieApi/movie/v1/verify/movieComment";
+    //评论点赞
+    public static final String CommentGreat = "movieApi/movie/v1/verify/movieCommentGreat";
+    //用户对评论的回复
+    public static final String AddCommentReply = "movieApi/movie/v1/verify/commentReply";
 }

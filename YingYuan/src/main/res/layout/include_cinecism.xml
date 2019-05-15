@@ -50,5 +50,32 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dp_20"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:id="@+id/edit_cinecism_relative_id"
+            android:visibility="gone"
+            android:gravity="center">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_100"
+                android:background="@drawable/edit_shape"
+                android:id="@+id/edit_cinecism_comment_id"
+                android:layout_marginRight="@dimen/dp_90"
+                android:gravity="top"
+                android:layout_marginLeft="@dimen/dp_50"
+                android:hint="请输入评论内容"
+                android:padding="@dimen/dp_8"/>
+            <TextView
+                android:layout_alignParentRight="true"
+                android:text="完成"
+                android:background="@drawable/button_shape"
+                android:id="@+id/edit_cinecism_over_id"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/dp_50"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_100" />
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

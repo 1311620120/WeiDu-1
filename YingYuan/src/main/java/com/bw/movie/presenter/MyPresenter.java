@@ -20,10 +20,55 @@ import java.util.Map;
 public class MyPresenter<T> implements MyInterface.PresenterInter {
     MyInterface.ModelInter modelInter;
     T tt;
+    private MyInterface.ViewInter.CommentReplyInter commentReplyInter;
 
     public MyPresenter(T tt) {
         modelInter = new MyModel();
         this.tt = tt;
+    }
+
+    @Override
+    public void toSchedule(Map<String, String> map) {
+        final MyInterface.ViewInter.ScheduleInter scheduleInter = (MyInterface.ViewInter.ScheduleInter) tt;
+        modelInter.doSchedule(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                scheduleInter.ScheduleInter(object);
+            }
+        });
+    }
+
+    @Override
+    public void toByMovie(int movieId) {
+        final MyInterface.ViewInter.ByMovieInter byMovieInter = (MyInterface.ViewInter.ByMovieInter) tt;
+        modelInter.doByMovie(movieId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                byMovieInter.ByMovie(object);
+            }
+        });
+    }
+
+    @Override
+    public void toAddReply(Map<String, String> map) {
+        commentReplyInter = (MyInterface.ViewInter.CommentReplyInter) tt;
+        modelInter.doPost(Content.AddCommentReply, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                commentReplyInter.AddReply((String) object);
+            }
+        });
+    }
+
+    @Override
+    public void toCommentReply(Map<String, String> map) {
+        commentReplyInter = (MyInterface.ViewInter.CommentReplyInter) tt;
+        modelInter.doCommentReply(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                commentReplyInter.CommentReply(object);
+            }
+        });
     }
 
     @Override
@@ -130,6 +175,30 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
             @Override
             public void success(Object object) {
                 followInter.CancelFollowMovie((String) object);
+            }
+        });
+    }
+
+    @Override
+    public void toMovieComment(Map<String, String> map) {
+        final MyInterface.ViewInter.MovieCommentInter  movieCommentInter = (MyInterface.ViewInter.MovieCommentInter) tt;
+        modelInter.doPost(Content.MovieComment, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                movieCommentInter.MovieComment((String) object);
+            }
+        });
+    }
+
+    @Override
+    public void toCommentGreat(int id) {
+        final MyInterface.ViewInter.CommentGreatInter commentGreatInter = (MyInterface.ViewInter.CommentGreatInter) tt;
+        Map<String,String> map = new HashMap<>();
+        map.put("commentId",id+"");
+        modelInter.doPost(Content.CommentGreat, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                commentGreatInter.CommentGreat((String) object);
             }
         });
     }

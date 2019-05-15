@@ -6,8 +6,6 @@ import android.os.Bundle;
 import com.bw.movie.fragment.CinemaFragment;
 import com.bw.movie.fragment.FilmFragment;
 import com.bw.movie.fragment.MyFragment;
-import com.bw.movie.inter.MyInterface;
-import com.bw.movie.presenter.MyPresenter;
 import com.hjm.bottomtabbar.BottomTabBar;
 
 import java.util.HashMap;

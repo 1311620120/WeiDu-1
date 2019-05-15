@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bw.movie.activity.GuanzuActivity;
@@ -47,9 +49,9 @@ public class CinemaFragment extends Fragment implements IMainView {
     String sessionId;
     int page = 1, count = 10;
     @BindView(R.id.select_Cinema_but_tui)
-    TextView selectCinemaButTui;
+    RadioButton selectCinemaButTui;
     @BindView(R.id.select_Cinema_but_fujin)
-    TextView selectCinemaButFujin;
+    RadioButton selectCinemaButFujin;
     @BindView(R.id.la)
     LinearLayout la;
     @BindView(R.id.select_cinema_recycler)
