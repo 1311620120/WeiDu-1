@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
 import com.bw.movie.view.R;
+import com.bw.movie.view.TicketActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -26,6 +28,8 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
         this.context=context;
         this.result=result;
     }
+
+
 
     @NonNull
     @Override
@@ -46,7 +50,10 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
 
     @Override
     public int getItemCount() {
-        return result.size();
+        if (result != null){
+            return result.size();
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

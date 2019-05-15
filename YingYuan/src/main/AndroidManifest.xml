@@ -10,7 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<<<<<<< HEAD
     >>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
+=======
+
+>>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -45,8 +49,13 @@
             android:value="Channel ID" />
 
         <activity android:name=".TicketActivity" />
+<<<<<<< HEAD
         <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
         <activity android:name="com.bw.movie.activity.MinessActivity"></activity>
+=======
+        <activity android:name=".CommentReplyActivity" />
+        <activity android:name=".ScheduleActivity"></activity>
+>>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
     </application>
 
 </manifest>

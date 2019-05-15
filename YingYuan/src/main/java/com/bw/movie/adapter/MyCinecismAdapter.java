@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.bean.CommentBean;
+import com.bw.movie.view.DYDetailActivity;
 import com.bw.movie.view.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -17,6 +19,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static com.bw.movie.view.R.drawable.com_icon_meiyoudianzan_hdpi;
+import static com.bw.movie.view.R.drawable.com_icon_youdianzan_hdpi;
 
 /**
  * @Author: zhang
@@ -26,12 +31,12 @@ import java.util.List;
 public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.ViewHolder> {
     List<CommentBean.ResultBean> list;
     Context context;
-
+    DYDetailActivity activity ;
     public MyCinecismAdapter(List<CommentBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
+        activity = (DYDetailActivity) context;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,7 +45,7 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.simple.setImageURI(list.get(position).getCommentHeadPic());
         holder.simple.getHierarchy().setRoundingParams(RoundingParams.asCircle());
         holder.name.setText(list.get(position).getCommentUserName());
@@ -48,9 +53,25 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
         Date date = new Date(list.get(position).getCommentTime());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:ss:mm");
         holder.time.setText(format.format(date));
+        if (list.get(position).getIsGreat() == 0){
+            holder.isgreatNum.setBackgroundResource(com_icon_meiyoudianzan_hdpi);
+        }else {
+            holder.isgreatNum.setBackgroundResource(com_icon_youdianzan_hdpi);
+        }
         holder.greatNum.setText(list.get(position).getGreatNum()+"");
         holder.replyNum.setText(list.get(position).getReplyNum()+"");
-        //holder.time.setText(list.get(position).getCommentTime());
+        holder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.Reply(list.get(position).getCommentId());
+            }
+        });
+        holder.isgreatNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.isGreat(list.get(position).getCommentId());
+            }
+        });
     }
 
     @Override
@@ -63,14 +84,17 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         SimpleDraweeView simple;
-        TextView name,comment,time;
-        CheckBox greatNum,replyNum;
+        TextView name,comment,time,greatNum,replyNum;
+        CheckBox isgreatNum;
+        ImageView reply;
         public ViewHolder(View itemView) {
             super(itemView);
             simple = itemView.findViewById(R.id.cinecism_simple_item_id);
             name = itemView.findViewById(R.id.cinecism_commentUserName_item_id);
             comment = itemView.findViewById(R.id.cinecism_movieComment_item_id);
             time = itemView.findViewById(R.id.cinecism_commentTime_item_id);
+            isgreatNum = itemView.findViewById(R.id.cinecism_isgreatNum_item_id);
+            reply = itemView.findViewById(R.id.cinecism_reply_item_id);
             greatNum = itemView.findViewById(R.id.cinecism_greatNum_item_id);
             replyNum = itemView.findViewById(R.id.cinecism_replyNum_item_id);
         }

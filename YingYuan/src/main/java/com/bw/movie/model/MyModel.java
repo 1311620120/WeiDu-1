@@ -1,10 +1,11 @@
 package com.bw.movie.model;
 
-import android.util.Log;
-
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MovieDetailBean;
+import com.bw.movie.bean.ReplyBean;
+import com.bw.movie.bean.ScheduleBean;
+import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.util.Api;
@@ -27,6 +28,22 @@ import okhttp3.ResponseBody;
 public class MyModel implements MyInterface.ModelInter {
     MyCallBack myCallBack;
     int i = 1;
+
+    @Override
+    public void doSchedule(Map<String, String> map, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestSchedule(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ScheduleBean>() {
+                    @Override
+                    public void accept(ScheduleBean scheduleBean) throws Exception {
+                        myCallBack.success(scheduleBean);
+                    }
+                });
+    }
+
     @Override
     public void doPost(String url, Map<String, String> map, final MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
@@ -117,6 +134,36 @@ public class MyModel implements MyInterface.ModelInter {
                         JSONObject object = new JSONObject(responseBody.string());
                         String json = object.getString("message");
                         myCallBack.success(json);
+                    }
+                });
+    }
+
+    @Override
+    public void doCommentReply(Map<String, String> map, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestReply(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ReplyBean>() {
+                    @Override
+                    public void accept(ReplyBean replyBean) throws Exception {
+                        myCallBack.success(replyBean);
+                    }
+                });
+    }
+
+    @Override
+    public void doByMovie(int movieId, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestByMovie(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Select_CinemaBean>() {
+                    @Override
+                    public void accept(Select_CinemaBean select_cinemaBean) throws Exception {
+                        myCallBack.success(select_cinemaBean);
                     }
                 });
     }

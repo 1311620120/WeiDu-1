@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".ViewActivity"
     >
+=======
+    tools:context=".ViewActivity">
+>>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
 <com.hjm.bottomtabbar.BottomTabBar
     android:layout_width="match_parent"
     android:layout_height="match_parent"

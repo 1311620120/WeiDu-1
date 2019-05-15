@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,7 +29,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DYDetailActivity extends AppCompatActivity implements MyInterface.ViewInter.DetailInter,MyInterface.ViewInter.FollowInter, MyInterface.ViewInter.CommentInter {
+public class DYDetailActivity extends AppCompatActivity implements MyInterface.ViewInter.DetailInter
+        , MyInterface.ViewInter.FollowInter
+        , MyInterface.ViewInter.CommentInter
+        , MyInterface.ViewInter.MovieCommentInter
+        ,MyInterface.ViewInter.CommentGreatInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.dy_detail_title_id)
@@ -81,6 +86,12 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
     RelativeLayout textCinecismLayoutId;
     @BindView(R.id.text_short_layout_id)
     RelativeLayout textShortLayoutId;
+    @BindView(R.id.edit_cinecism_comment_id)
+    EditText editCinecismCommentId;
+    @BindView(R.id.edit_cinecism_over_id)
+    TextView editCinecismOverId;
+    @BindView(R.id.edit_cinecism_relative_id)
+    RelativeLayout editCinecismRelativeId;
     private MovieDetailBean bean;
     private List<CommentBean.ResultBean> list = new ArrayList<>();
     private Map<String, String> map;
@@ -133,7 +144,11 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
         }
     }
 
-    @OnClick({R.id.text_detail_id, R.id.text_short_id, R.id.text_poster_id, R.id.text_cinecism_id, R.id.dy_detail_back_id, R.id.dy_detail_shop_id, R.id.include_detail_back_id, R.id.include_cinecism_back_id,R.id.dy_detail_follow_id})
+    @OnClick({R.id.text_detail_id, R.id.text_short_id, R.id.text_poster_id
+            , R.id.text_cinecism_id, R.id.dy_detail_back_id
+            , R.id.dy_detail_shop_id, R.id.include_detail_back_id
+            , R.id.include_cinecism_back_id, R.id.dy_detail_follow_id
+            , R.id.include_cinecism_comment_id,R.id.edit_cinecism_over_id})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.text_detail_id:
@@ -156,7 +171,9 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
                 finish();
                 break;
             case R.id.dy_detail_shop_id:
-                Intent intent = new Intent(this,TicketActivity.class);
+                Intent intent = new Intent(this, TicketActivity.class);
+                intent.putExtra("movieId",bean.getResult().getId());
+                intent.putExtra("name",bean.getResult().getName());
                 startActivity(intent);
                 break;
             case R.id.include_detail_back_id:
@@ -166,10 +183,25 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
                 textCinecismLayoutId.setVisibility(View.GONE);
                 break;
             case R.id.dy_detail_follow_id:
-                if (bean.getResult().getFollowMovie() == 2){
+                if (bean.getResult().getFollowMovie() == 2) {
                     presenterInter.toFollowMovie(bean.getResult().getId());
-                }else {
+                } else {
                     presenterInter.toCancelFollowMovie(bean.getResult().getId());
+                }
+                break;
+            case R.id.include_cinecism_comment_id:
+                editCinecismRelativeId.setVisibility(View.VISIBLE);
+                break;
+            case R.id.edit_cinecism_over_id:
+                String string = editCinecismCommentId.getText().toString();
+                Map<String,String> map = new HashMap<>();
+                if (string == ""){
+                    Toast.makeText(this,"请输入要评论的内容",Toast.LENGTH_SHORT).show();
+                }else {
+                    map.put("movieId",bean.getResult().getId()+"");
+                    map.put("commentContent",string);
+                    presenterInter.toMovieComment(map);
+                    editCinecismRelativeId.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -193,15 +225,44 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
 
     @Override
     public void CancelFollowMovie(String string) {
-        Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
         list.clear();
         presenterInter.toMovieDetail(id);
     }
 
     @Override
     public void FollowMovie(String string) {
-        Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
         list.clear();
         presenterInter.toMovieDetail(id);
+    }
+
+    //发布评论返回数据
+    @Override
+    public void MovieComment(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+        if (string.equals("评论成功")) {
+            presenterInter.toComment(map);
+        }
+    }
+
+    //查看用户评论回复
+    public void Reply(int commentId) {
+        Intent intent = new Intent(this,CommentReplyActivity.class);
+        intent.putExtra("commentId",commentId);
+        startActivity(intent);
+    }
+
+    //给评论点赞
+    public void isGreat(int commentId) {
+        presenterInter.toCommentGreat(commentId);
+    }
+
+    @Override
+    public void CommentGreat(String str) {
+        Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+        if (str.equals("点赞成功")){
+            presenterInter.toComment(map);
+        }
     }
 }
