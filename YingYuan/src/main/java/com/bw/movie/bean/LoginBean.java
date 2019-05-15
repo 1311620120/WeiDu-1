@@ -7,12 +7,6 @@ package com.bw.movie.bean;
  */
 public class LoginBean {
 
-    /**
-     * result : {"sessionId":"15575436653061254","userId":1254,"userInfo":{"headPic":"http://mobile.bwstudent.com/images/movie/head_pic/bwjy.jpg","id":1254,"lastLoginTime":1557542731000,"nickName":"锵锵锵","phone":"18813145182","sex":1}}
-     * message : 登陆成功
-     * status : 0000
-     */
-
     private ResultBean result;
     private String message;
     private String status;
@@ -42,11 +36,6 @@ public class LoginBean {
     }
 
     public static class ResultBean {
-        /**
-         * sessionId : 15575436653061254
-         * userId : 1254
-         * userInfo : {"headPic":"http://mobile.bwstudent.com/images/movie/head_pic/bwjy.jpg","id":1254,"lastLoginTime":1557542731000,"nickName":"锵锵锵","phone":"18813145182","sex":1}
-         */
 
         private String sessionId;
         private int userId;

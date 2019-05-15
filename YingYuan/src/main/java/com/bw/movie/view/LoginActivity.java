@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.bean.LoginBean;
+import com.bw.movie.bean.MyIdBean;
+import com.bw.movie.greendao.gen.MyIdBeanDao;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
     ImageView wxDengLuId;
     private SharedPreferences user;
     private SharedPreferences.Editor editor;
+    private MyIdBeanDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
             phoneId.setText("");
             pwdId.setText("");
         }
+        dao = App.dao.getMyIdBeanDao();
     }
 
     @OnClick({R.id.login_checkbox_pwd_id, R.id.login_checkbox_phone_id, R.id.to_register, R.id.intent_login})
@@ -116,12 +120,22 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
 
     @Override
     public void showLogin(Object object) {
-        LoginBean bean = (LoginBean) object;
+        final LoginBean bean = (LoginBean) object;
         if (bean != null) {
             Toast.makeText(this, bean.getMessage(), Toast.LENGTH_SHORT).show();
             if (bean.getMessage().equals("登陆成功")) {
                 key = bean.getMessage();
-                Log.i("tag", bean.getResult().getUserId() + "--" + bean.getResult().getSessionId());
+                dao.deleteAll();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MyIdBean idBean = new MyIdBean();
+                        idBean.setUserId(bean.getResult().getUserId());
+                        idBean.setSessionId(bean.getResult().getSessionId());
+                        dao.insert(idBean);
+                    }
+                });
+                //Log.i("tag", bean.getResult().getUserId() + "--" + bean.getResult().getSessionId());
                 edit.clear();
                 edit.putString("userId", String.valueOf(bean.getResult().getUserId()));
                 edit.putString("sessionId", bean.getResult().getSessionId());

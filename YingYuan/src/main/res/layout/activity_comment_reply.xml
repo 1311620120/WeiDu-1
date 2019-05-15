@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CommentReplyActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_20"
+        android:id="@+id/comment_replay_recycler_id"></android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:id="@+id/edit_cinecism_relative_id"
+        android:visibility="gone"
+        android:gravity="center">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:background="@drawable/edit_shape"
+            android:id="@+id/edit_replay_comment_id"
+            android:layout_marginRight="@dimen/dp_90"
+            android:gravity="top"
+            android:layout_marginLeft="@dimen/dp_50"
+            android:hint="请输入评论内容"
+            android:padding="@dimen/dp_8"/>
+        <TextView
+            android:layout_alignParentRight="true"
+            android:text="完成"
+            android:background="@drawable/button_shape"
+            android:id="@+id/edit_replay_over_id"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_50"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_100" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_55"
+        android:src="@mipmap/com_icon_publish_default_hdpi"
+        android:id="@+id/comment_replay_image_id"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dp_20"/>
+</RelativeLayout>

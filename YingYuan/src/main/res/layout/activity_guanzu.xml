@@ -11,32 +11,50 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
-        <TextView
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <RadioButton
+            android:button="@null"
+            android:checked="true"
             android:layout_marginTop="@dimen/dp_50"
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/My_film"
             android:textSize="@dimen/sp_14"
+            android:background="@drawable/button_selector"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
             android:layout_marginRight="@dimen/dp_32"
             android:text="关注电影"/>
-        <TextView
+        <RadioButton
+            android:button="@null"
             android:layout_marginTop="@dimen/dp_50"
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:textSize="@dimen/sp_14"
+            android:background="@drawable/button_selector"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
             android:id="@+id/My_Cinema"
             android:text="关注影院"/>
+        </RadioGroup>
     </LinearLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:layout_below="@+id/laa"
+        android:layout_below="@id/laa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/my_film_recycler"
         android:visibility="visible"></com.jcodecraeer.xrecyclerview.XRecyclerView>
  <com.jcodecraeer.xrecyclerview.XRecyclerView
-    android:layout_below="@+id/laa"
+    android:layout_below="@id/laa"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/my_Cinema_recycler"

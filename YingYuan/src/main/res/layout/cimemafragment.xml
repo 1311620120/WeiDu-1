@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
+
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-=======
-<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
->>>>>>> b4cfb84bd0a3f8f71e80fb0bef4337037310ad1b
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/cinema_img"
@@ -30,24 +26,41 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-
-        <TextView
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <RadioButton
+            android:button="@null"
+            android:checked="true"
             android:layout_marginTop="@dimen/dp_50"
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/select_Cinema_but_tui"
             android:textSize="@dimen/sp_14"
+            android:background="@drawable/button_selector"
             android:layout_marginRight="@dimen/dp_32"
-            android:text="推荐影院"/>
-        <TextView
+            android:text="推荐影院"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"/>
+        <RadioButton
+            android:button="@null"
             android:layout_marginTop="@dimen/dp_50"
             android:layout_marginBottom="@dimen/dp_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_14"
+            android:background="@drawable/button_selector"
             android:id="@+id/select_Cinema_but_fujin"
-            android:text="附近电影"/>
+            android:text="附近电影"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"/>
+        </RadioGroup>
     </LinearLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_below="@+id/la"

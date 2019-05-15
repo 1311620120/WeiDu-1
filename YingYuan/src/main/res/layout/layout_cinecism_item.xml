@@ -36,19 +36,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cinecism_commentTime_item_id"/>
-        <CheckBox
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_15"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp_60"
-            android:text="1111"
-            android:id="@+id/cinecism_greatNum_item_id"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="111"
-            android:id="@+id/cinecism_replyNum_item_id"/>
+            android:orientation="horizontal">
+            <CheckBox
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_alignParentRight="true"
+                android:id="@+id/cinecism_isgreatNum_item_id"
+                android:button="@null"
+                />
+            <TextView
+                android:text="111"
+                android:id="@+id/cinecism_greatNum_item_id"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_20"/>
+            <ImageView
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:layout_alignParentRight="true"
+                android:text="111"
+                android:src="@mipmap/com_icon_comment_default_hdpi"
+                android:button="@null"
+                android:id="@+id/cinecism_reply_item_id"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_15"
+                android:text="1111"
+                android:id="@+id/cinecism_replyNum_item_id"
+                android:layout_marginLeft="@dimen/dp_6"/>
+        </LinearLayout>
+
     </RelativeLayout>
     <TextView
         android:layout_width="@dimen/dp_300"
