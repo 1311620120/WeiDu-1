@@ -28,7 +28,7 @@ import java.util.List;
  * @Date: 2019/5/13 19:37:51
  * @Description:
  */
-public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
+public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
     Context context;
     List<Select_CinemaBean.ResultBean> result;
     public select_cinemaAdapter(Context context, List<Select_CinemaBean.ResultBean> result) {
@@ -52,10 +52,7 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-<<<<<<< HEAD
 
-=======
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
                 holder.cineam_diess.setText(result.get(position).getAddress());
                 holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
                 holder.cineam_title.setText(result.get(position).getName());
@@ -65,9 +62,9 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
             holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_default_xhdpi);
         }if (followCinema==2){
           holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
-<<<<<<< HEAD
+
     }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -80,16 +77,17 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
                 context.startActivity(intent);
 
 
-=======
-        }
+            }
+        });
         holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
+
             }
         });
-}
+
+    }
 
 
     @Override

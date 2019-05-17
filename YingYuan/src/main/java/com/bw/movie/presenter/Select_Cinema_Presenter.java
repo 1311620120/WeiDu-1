@@ -34,8 +34,8 @@ public class Select_Cinema_Presenter extends BasePresenter <IMainView> {
                      }
                  });
      }
-    public  void SeletefujinData(String userId ,String sessionId,int page,int count){
-        Observable<Select_CinmaBeanFu> select_cinmaBeanFuObservable = instance.api.select_fujin(userId, sessionId, page, count);
+    public  void SeletefujinData(String userId ,String sessionId,String longitude,String latitude,int page,int count){
+        Observable<Select_CinmaBeanFu> select_cinmaBeanFuObservable = instance.api.select_fujin(userId, sessionId,longitude,latitude, page, count);
         select_cinmaBeanFuObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
              .subscribe(new Consumer<Select_CinmaBeanFu>() {

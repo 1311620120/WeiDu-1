@@ -1,6 +1,7 @@
 package com.bw.movie.util;
 
 import com.bw.movie.bean.CommentBean;
+import com.bw.movie.bean.JiCineamBean;
 import com.bw.movie.bean.LoginBean;
 
 import com.bw.movie.bean.My_CinemaBean;
@@ -14,15 +15,15 @@ import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
-<<<<<<< HEAD
+
 
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
 
-=======
+
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
+
 import com.bw.movie.data.Content;
 
 import java.util.Map;
@@ -34,18 +35,16 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-<<<<<<< HEAD
 
-=======
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
+
+
+
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-<<<<<<< HEAD
 
-=======
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
+
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -104,7 +103,9 @@ public interface Api {
     @GET("movieApi/cinema/v1/findNearbyCinemas")
     Observable<Select_CinmaBeanFu> select_fujin(@Header("userId") String userId,
                                                 @Header("sessionId") String sessionId,
-                                                @Query("page")int page, @Query("count") int count);
+                                                @Query("longitude")String longitude, @Query("latitude") String latitude,
+                                                @Query("page")int page, @Query("count") int count
+                                              );
 
     //首页展示请求
     @GET()
@@ -118,10 +119,10 @@ public interface Api {
     //关注/取关
     @GET()
     Observable<ResponseBody> requestGet(@Url String url,@Query("movieId") int movieId);
-<<<<<<< HEAD
+
 //根据影院Id 影院Id查询电影排挡
 @GET("movieApi/movie/v1/findMovieScheduleList")
-Observable<Select_CinemaIdBean> SelectCinemaId(@Header("userId") String userId,
+Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
                                                @Header("sessionId") String sessionId,
                                                @Query("cinemasId") int cinemasId,
                                                @Query("movieId") int movieId);
@@ -131,8 +132,13 @@ Observable<Select_CinemaIdBean> SelectCinemaId(@Header("userId") String userId,
    Observable<ResponseBody> minessss(@Header("userId") String userId,
                                         @Header("sessionId") String sessionId,
                                         @Field("content") String content);
-=======
 
+    //根据影院Id 影院即将上映电影排挡
+    @GET("movieApi/movie/v1/findMovieListByCinemaId")
+    Observable<JiCineamBean> SelectjiCinemaId(
+            @Header("userId") String userId,
+    @Header("sessionId") String sessionId,
+    @Query("cinemaId") int cinemaId);
     //查看评论的具体回复消息
     @GET("movieApi/movie/v1/findCommentReply")
     Observable<ReplyBean> requestReply(@QueryMap Map<String,String> map);
@@ -150,5 +156,5 @@ Observable<Select_CinemaIdBean> SelectCinemaId(@Header("userId") String userId,
     Observable<ResponseBody> get(@Query("categoryid") int id,
                                  @Query("page") int page,
                                  @Query("count") int count);*/
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
+
 }

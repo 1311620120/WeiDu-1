@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bw.movie.activity.Select_CineamActivity;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.view.R;
 
@@ -19,11 +21,12 @@ import java.util.List;
  * @Description:
  */
 public class Cineam_gouAdapter extends RecyclerView.Adapter <Cineam_gouAdapter.ViewHolder>{
-    Context context; List<Select_CinemaIdBean.ResultBean> result;
-    public Cineam_gouAdapter(Context context, List<Select_CinemaIdBean.ResultBean> result) {
+    Context context;  List<ScheduleBean.ResultBean> result;
+    public Cineam_gouAdapter(Context context,  List<ScheduleBean.ResultBean> result) {
         this.context=context;
         this.result=result;
     }
+
 
     @NonNull
     @Override

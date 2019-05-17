@@ -90,4 +90,12 @@ public class MegessActivity extends AppCompatActivity implements IMainView {
         my_magessAdapter.notifyDataSetChanged();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (megessPresenter==null){
+            megessPresenter.detacher();
+        }
+    }
 }

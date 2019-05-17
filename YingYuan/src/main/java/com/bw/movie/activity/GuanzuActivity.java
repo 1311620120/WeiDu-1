@@ -165,4 +165,13 @@ public class GuanzuActivity extends AppCompatActivity implements IMainView, View
                 break;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (my_film_cinema==null){
+            my_film_cinema.detacher();
+        }
+
+    }
 }
