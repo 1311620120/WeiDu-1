@@ -23,6 +23,8 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.http.HEAD;
+
 /**
  * @Auther: 白俊岭
  * @Date: 2019/5/13 19:37:51
@@ -51,7 +53,13 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
     }
 
     @Override
+<<<<<<< HEAD
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+=======
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+
+
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
                 holder.cineam_diess.setText(result.get(position).getAddress());
                 holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
@@ -62,9 +70,14 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
             holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_default_xhdpi);
         }if (followCinema==2){
           holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
+<<<<<<< HEAD
 
     }
         holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
+=======
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
             @Override
             public void onClick(View v) {
 
@@ -76,6 +89,7 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
                 intent.putExtra("saddress", result.get(position).getAddress());
                 context.startActivity(intent);
 
+<<<<<<< HEAD
 
             }
         });
@@ -88,18 +102,31 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
         });
 
     }
-
-
-    @Override
-    public int getItemCount() {
-        if (result != null){
-            return result.size();
+=======
         }
-        return 0;
+        });
+                holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+
+                    }
+                });
+
     }
+        @Override
+        public int getItemCount() {
+            if (result != null){
+                return result.size();
+            }
+            return 0;
+        }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private final SimpleDraweeView cinema_logo;
         private final TextView cineam_title;
         private final TextView cineam_juli;
@@ -114,6 +141,5 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
             cineam_diess = itemView.findViewById(R.id.cineam_diess);
             cinema_dianzan = itemView.findViewById(R.id.cinema_dianzan);
         }
-
     }
 }

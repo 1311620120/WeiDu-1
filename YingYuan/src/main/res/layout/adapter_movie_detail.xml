@@ -27,9 +27,11 @@
                     android:textSize="@dimen/sp_15"
                     android:id="@+id/detail_title_id"
                     android:text="11111"/>
-                <com.facebook.drawee.view.SimpleDraweeView
+                <CheckBox
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
+                    android:button="@null"
+                    android:background="@drawable/follow_selector"
                     android:id="@+id/detail_follow_id"
                     android:layout_alignParentRight="true"/>
                 <TextView

@@ -71,16 +71,7 @@ public class ComingSoonFragment extends Fragment implements MyInterface.ViewInte
                 startActivity(intent);
             }
         });
-        adapter.setFollowOnClickListener(new MyDetailMovieAdapter.SetOnClick() {
-            @Override
-            public void OnClick(int i) {
-                if (list.get(i).getFollowMovie() == 2){
-                    presenterInter.toFollowMovie(list.get(i).getId());
-                }else {
-                    presenterInter.toCancelFollowMovie(list.get(i).getId());
-                }
-            }
-        });
+
     }
 
     @Override

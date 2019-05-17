@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+<<<<<<< HEAD
     <stroke android:width="2dp"/>
     <stroke android:color="#333"/>
 </selector>
 
+=======
+   
+
+
+</selector>
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c

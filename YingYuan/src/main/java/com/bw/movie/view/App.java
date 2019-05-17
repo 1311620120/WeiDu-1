@@ -1,22 +1,33 @@
 package com.bw.movie.view;
 
 import android.app.Application;
+<<<<<<< HEAD
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 
+=======
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
 import com.bw.movie.greendao.gen.DaoMaster;
 import com.bw.movie.greendao.gen.DaoSession;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+<<<<<<< HEAD
 
 
 
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.UMShareAPI;
 
+=======
+
+import com.umeng.commonsdk.UMConfigure;
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
 /**
  * @Author: zhang
@@ -25,11 +36,16 @@ import com.umeng.socialize.UMShareAPI;
  */
 public class App extends Application {
 
+<<<<<<< HEAD
 
     public static int id;
 
     public static DaoSession dao;
 
+=======
+    public static int id;
+    public static DaoSession dao;
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
     @Override
     public void onCreate() {
@@ -40,7 +56,10 @@ public class App extends Application {
         DaoMaster.DevOpenHelper user = new DaoMaster.DevOpenHelper(this, "user");
         SQLiteDatabase userDatabase = user.getWritableDatabase();
         dao = new DaoMaster(userDatabase).newSession();
+<<<<<<< HEAD
 
+=======
+>>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
     }
 
 }

@@ -9,6 +9,31 @@
         android:layout_marginTop="@dimen/dp_110"
         android:visibility="gone"
         android:background="@drawable/detail_relative_shape">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:id="@+id/re07">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="预告片"
+                android:id="@+id/text5"
+                android:textSize="@dimen/sp_15"
+                android:layout_marginBottom="@dimen/dp_5"/>
+            <ImageView
+                android:layout_width="@dimen/dp_25"
+                android:layout_below="@id/text5"
+                android:layout_height="@dimen/dp_3"
+                android:background="@drawable/banner1_shape"/>
+            <ImageView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:scaleType="fitXY"
+                android:id="@+id/include_short_back_id"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/com_icon_down_default_xhdpi"/>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

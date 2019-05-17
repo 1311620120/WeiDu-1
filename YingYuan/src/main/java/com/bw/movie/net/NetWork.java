@@ -6,4 +6,5 @@ package com.bw.movie.net;
  * @Description:
  */
 public class NetWork {
+
 }
