@@ -12,9 +12,12 @@ import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.bean.ReplyBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
+import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
+
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
+
 import com.bw.movie.data.Content;
 
 import java.util.Map;
@@ -22,13 +25,16 @@ import java.util.Map;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -102,6 +108,20 @@ public interface Api {
     @GET()
     Observable<ResponseBody> requestGet(@Url String url,@Query("movieId") int movieId);
 
+//根据影院Id 影院Id查询电影排挡
+@GET("movieApi/movie/v1/findMovieScheduleList")
+Observable<Select_CinemaIdBean> SelectCinemaId(@Header("userId") String userId,
+                                               @Header("sessionId") String sessionId,
+                                               @Query("cinemasId") int cinemasId,
+                                               @Query("movieId") int movieId);
+   // 意见反馈  http://172.17.8.100/movieApi/tool/v1/verify/recordFeedBack
+   @FormUrlEncoded
+   @POST("movieApi/tool/v1/verify/recordFeedBack")
+   Observable<ResponseBody> minessss(@Header("userId") String userId,
+                                        @Header("sessionId") String sessionId,
+                                        @Field("content") String content);
+
+
     //查看评论的具体回复消息
     @GET("movieApi/movie/v1/findCommentReply")
     Observable<ReplyBean> requestReply(@QueryMap Map<String,String> map);
@@ -114,9 +134,9 @@ public interface Api {
     @GET("movieApi/movie/v1/findMovieScheduleList")
     Observable<ScheduleBean> requestSchedule(@QueryMap Map<String,String> map);
 
-    /*"http://mobile.bwstudent.com/"
-    @GET("commodity/v1/findCommodityByCategory")
-    Observable<ResponseBody> get(@Query("categoryid") int id,
-                                 @Query("page") int page,
-                                 @Query("count") int count);*/
+    //购票下单
+    @FormUrlEncoded
+    @POST("movieApi/movie/v1/verify/buyMovieTicket")
+    Observable<ResponseBody> requestTicket(@FieldMap Map<String,String> map);
+
 }

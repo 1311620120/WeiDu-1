@@ -55,6 +55,7 @@ public class RetrofitUtil {
 
     public static RetrofitUtil getInstance() {
         return HttpUtils.retrofitUtil;
+
     }
 
     public Retrofit getRetrofit(){

@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.bw.movie.activity.GuanzuActivity;
 import com.bw.movie.activity.MegessActivity;
+import com.bw.movie.activity.MinessActivity;
 import com.bw.movie.activity.PersonalActivity;
 import com.bw.movie.activity.ShopingActivity;
 import com.bw.movie.bai.IMainView;
@@ -37,6 +38,7 @@ import com.bw.movie.bean.My_HeadPicBean;
 import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.presenter.HeadPicPresenter;
 import com.bw.movie.presenter.MyziliaoPresenter;
+import com.bw.movie.view.LoginActivity;
 import com.bw.movie.view.MainActivity;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -167,12 +169,14 @@ public class MyFragment extends Fragment implements IMainView {
                 startActivity(new Intent(getActivity(), ShopingActivity.class));
                 break;
             case R.id.my_yijian:
+                startActivity(new Intent(getActivity(), MinessActivity.class));
                 break;
             case R.id.my_banben:
                 Toast.makeText(getActivity(),"已是最新版本！！！",Toast.LENGTH_SHORT).show();;
 
                 break;
             case R.id.my_tuichu:
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
         }
     }

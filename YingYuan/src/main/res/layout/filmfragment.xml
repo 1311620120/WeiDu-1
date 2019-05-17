@@ -56,6 +56,60 @@
             android:layout_marginLeft="@dimen/dp_30"
             android:layout_marginRight="@dimen/dp_30"
             android:layout_height="match_parent"></recycler.coverflow.RecyclerCoverFlow>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="3dp"
+            android:id="@+id/file_radio_id"
+            android:background="#ccc"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:checked="true"
+                android:id="@+id/rb1_file_id"
+                android:background="@drawable/button1_selector"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:id="@+id/rb2_file_id"
+                android:background="@drawable/button1_selector"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:id="@+id/rb3_file_id"
+                android:background="@drawable/button1_selector"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:id="@+id/rb4_file_id"
+                android:background="@drawable/button1_selector"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:id="@+id/rb5_file_id"
+                android:background="@drawable/button1_selector"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="3dp"
+                android:button="@null"
+                android:id="@+id/rb6_file_id"
+                android:background="@drawable/button1_selector"/>
+        </RadioGroup>
+
     </RelativeLayout>
 
     <RelativeLayout

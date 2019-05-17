@@ -1,6 +1,7 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,11 +12,18 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
+import com.bw.movie.view.App;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.http.HEAD;
 
 /**
  * @Auther: 白俊岭
@@ -45,7 +53,10 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+
+
+
                 holder.cineam_diess.setText(result.get(position).getAddress());
                 holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
                 holder.cineam_title.setText(result.get(position).getName());
@@ -56,25 +67,41 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
         }if (followCinema==2){
           holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
         }
-        holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
-            }
-        });
-}
 
 
-    @Override
-    public int getItemCount() {
-        if (result != null){
-            return result.size();
+                Intent intent = new Intent(context, Select_CineamActivity.class);
+                intent.putExtra("id",result.get(position).getId());
+                intent.putExtra("name",result.get(position).getName());
+                intent.putExtra("logo",result.get(position).getLogo());
+                intent.putExtra("saddress", result.get(position).getAddress());
+                context.startActivity(intent);
+
         }
-        return 0;
+        });
+                holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
+
+                    }
+                });
+
     }
+        @Override
+        public int getItemCount() {
+            if (result != null){
+                return result.size();
+            }
+            return 0;
+        }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private final SimpleDraweeView cinema_logo;
         private final TextView cineam_title;
         private final TextView cineam_juli;
@@ -89,6 +116,5 @@ public class select_cinemaAdapter extends RecyclerView.Adapter<select_cinemaAdap
             cineam_diess = itemView.findViewById(R.id.cineam_diess);
             cinema_dianzan = itemView.findViewById(R.id.cinema_dianzan);
         }
-
     }
 }

@@ -3,6 +3,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/cinema_img"
@@ -75,5 +83,5 @@
         android:id="@+id/select_Cinemafu_recycler"
         android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
-
+</RelativeLayout>
 </RelativeLayout>

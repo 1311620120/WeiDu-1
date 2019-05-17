@@ -22,7 +22,7 @@
         android:layout_marginTop="@dimen/dp_60"
         android:layout_width="@dimen/dp_70"
         android:layout_height="@dimen/dp_70"
-        android:src="@mipmap/hdpi"
+        android:src="@mipmap/xhdpi"
         />
     <TextView
         android:layout_centerHorizontal="true"
@@ -48,6 +48,7 @@
     android:layout_marginTop="@dimen/dp_10"
     android:layout_marginLeft="@dimen/dp_24"
     android:layout_marginRight="@dimen/dp_24"
+    android:elevation="20dip"
     android:background="@drawable/backgroup"
     android:orientation="vertical">
       <ImageView
@@ -69,6 +70,7 @@
         android:layout_height="@dimen/dp_86"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginLeft="@dimen/dp_24"
+       android:elevation="2dip"
         android:layout_marginRight="@dimen/dp_24"
         android:background="@drawable/backgroup"
      >
@@ -107,6 +109,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginRight="@dimen/dp_24"
+        android:elevation="2dip"
         android:background="@drawable/backgroup"
         android:orientation="vertical">
         <ImageView

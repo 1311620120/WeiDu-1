@@ -3,14 +3,18 @@ package com.bw.movie.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.bean.CommentBean;
+import com.bw.movie.inter.MyInterface;
+import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.DYDetailActivity;
 import com.bw.movie.view.R;
 import com.facebook.drawee.generic.RoundingParams;
@@ -28,14 +32,16 @@ import static com.bw.movie.view.R.drawable.com_icon_youdianzan_hdpi;
  * @Date: 2019/5/13 21:30
  * @Description:
  */
-public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.ViewHolder> {
+public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.ViewHolder> implements MyInterface.ViewInter.CommentGreatInter {
     List<CommentBean.ResultBean> list;
     Context context;
     DYDetailActivity activity ;
+    MyInterface.PresenterInter presenterInter;
     public MyCinecismAdapter(List<CommentBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
         activity = (DYDetailActivity) context;
+        presenterInter = new MyPresenter<>(this);
     }
     @NonNull
     @Override
@@ -69,7 +75,8 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
         holder.isgreatNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.isGreat(list.get(position).getCommentId());
+                Log.e("tag",list.get(position).getCommentId()+"");
+                presenterInter.toCommentGreat(list.get(position).getCommentId());
             }
         });
     }
@@ -80,6 +87,12 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
             return list.size();
         }
         return 0;
+    }
+
+    @Override
+    public void CommentGreat(String str) {
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

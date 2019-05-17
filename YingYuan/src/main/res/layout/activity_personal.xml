@@ -38,7 +38,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
-            android:src="@mipmap/hdpi"/>
+            android:src="@mipmap/xhdpi"/>
         <TextView
             android:id="@+id/view1"
             android:layout_width="match_parent"

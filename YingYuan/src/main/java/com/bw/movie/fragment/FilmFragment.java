@@ -9,10 +9,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ import com.bw.movie.adapter.MyHotMovieAdapter;
 import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
+import com.bw.movie.view.DYDetailActivity;
 import com.bw.movie.view.MovieDetailActivity;
 import com.bw.movie.view.R;
 
@@ -31,6 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
 
@@ -63,6 +69,22 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
     RecyclerCoverFlow filmRecyclerFlowId;
     @BindView(R.id.film_fragment_search_id)
     RelativeLayout filmFragmentSearchId;
+    @BindView(R.id.file_radio_id)
+    RadioGroup radioId;
+    @BindView(R.id.rb1_file_id)
+    RadioButton rb1FileId;
+    @BindView(R.id.rb2_file_id)
+    RadioButton rb2FileId;
+    @BindView(R.id.rb3_file_id)
+    RadioButton rb3FileId;
+    @BindView(R.id.rb4_file_id)
+    RadioButton rb4FileId;
+    @BindView(R.id.rb5_file_id)
+    RadioButton rb5FileId;
+    @BindView(R.id.rb6_file_id)
+    RadioButton rb6FileId;
+    @BindView(R.id.text_search_id)
+    TextView textSearchId;
     private MyHotMovieAdapter adapter1;
     private MyHotMovieAdapter adapter2;
     private MyHotMovieAdapter adapter3;
@@ -70,12 +92,15 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
     private ObjectAnimator translationX;
     private ObjectAnimator translationY;
     private AnimatorSet animatorSet;
+    private TranslateAnimation animation;
+    ImageView butSearchId;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.filmfragment, null);
         unbinder = ButterKnife.bind(this, view);
+        butSearchId = view.findViewById(R.id.but_search_id);
         return view;
     }
 
@@ -98,17 +123,87 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
         filmComingSoonRecyclerId.setAdapter(adapter3);
         filmReleaseRecyclerId.setLayoutManager(layoutManager2);
         filmComingSoonRecyclerId.setLayoutManager(layoutManager3);
+
         adapter = new MyCoverFlowAdapter(list, getActivity());
         filmRecyclerFlowId.setAdapter(adapter);
         presenterInter.toHotMovie();
         presenterInter.toReleaseMovie();
         presenterInter.toComingSoonMovie();
-
+        animation = new TranslateAnimation(0, -270, 0, 0);
+        animation.setRepeatCount(0);
+        animation.setDuration(2000);
+        animation.setFillEnabled(true);
+        animation.setFillAfter(true);
         translationX = ObjectAnimator.ofFloat(filmFragmentSearchId, "translationX", 0, -270, -270);
         translationY = ObjectAnimator.ofFloat(filmFragmentSearchId, "translationX", -270, 0, 0);
         animatorSet = new AnimatorSet();
 
+        butSearchId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filmFragmentSearchId.setAnimation(animation);
+            }
+        });
+        adapter.setOnCLickListener(new MyCoverFlowAdapter.setOnClick() {
+            @Override
+            public void onClick(int j) {
+                Intent intent = new Intent(getActivity(), DYDetailActivity.class);
+                intent.putExtra("movieId", j);
+                startActivity(intent);
+            }
+        });
+        adapter1.setOnCLickListener(new MyHotMovieAdapter.setOnClick() {
+            @Override
+            public void onClick(int j) {
+                Intent intent = new Intent(getActivity(), DYDetailActivity.class);
+                intent.putExtra("movieId", j);
+                startActivity(intent);
+            }
+        });
+        adapter2.setOnCLickListener(new MyHotMovieAdapter.setOnClick() {
+            @Override
+            public void onClick(int j) {
+                Intent intent = new Intent(getActivity(), DYDetailActivity.class);
+                intent.putExtra("movieId", j);
+                startActivity(intent);
+            }
+        });
+        adapter3.setOnCLickListener(new MyHotMovieAdapter.setOnClick() {
+            @Override
+            public void onClick(int j) {
+                Intent intent = new Intent(getActivity(), DYDetailActivity.class);
+                intent.putExtra("movieId", j);
+                startActivity(intent);
+            }
+        });
 
+        filmRecyclerFlowId.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
+
+
+            @Override
+            public void onItemSelected(int position) {
+                switch (position) {
+                    case 0:
+                        rb1FileId.setChecked(true);
+                        break;
+                    case 1:
+                        rb2FileId.setChecked(true);
+                        break;
+                    case 2:
+                        rb3FileId.setChecked(true);
+                        break;
+                    case 3:
+                        rb4FileId.setChecked(true);
+                        break;
+                    case 4:
+                        rb5FileId.setChecked(true);
+                        break;
+                    case 5:
+                        rb6FileId.setChecked(true);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -142,7 +237,7 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
         unbinder.unbind();
     }
 
-    @OnClick({R.id.re01, R.id.re02, R.id.re03,R.id.but_search_id, R.id.text_search_id})
+    @OnClick({R.id.re01, R.id.re02, R.id.re03})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.re01:
@@ -159,14 +254,6 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
                 Intent comingSoon = new Intent(getActivity(), MovieDetailActivity.class);
                 comingSoon.putExtra("type", "comingSoon");
                 startActivity(comingSoon);
-                break;
-            case R.id.but_search_id:
-                animatorSet.play(translationX);
-                animatorSet.setDuration(2000).start();
-                break;
-            case R.id.text_search_id:
-                animatorSet.play(translationY);
-                animatorSet.setDuration(2000).start();
                 break;
         }
     }

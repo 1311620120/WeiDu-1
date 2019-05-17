@@ -9,8 +9,8 @@ import com.bw.movie.greendao.gen.DaoMaster;
 import com.bw.movie.greendao.gen.DaoSession;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.socialize.UMShareAPI;
 
 /**
  * @Author: zhang
@@ -19,6 +19,7 @@ import com.umeng.socialize.UMShareAPI;
  */
 public class App extends Application {
 
+    public static int id;
     public static DaoSession dao;
 
     @Override

@@ -1,5 +1,7 @@
 package com.bw.movie.model;
 
+import android.util.Log;
+
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MovieDetailBean;
@@ -164,6 +166,30 @@ public class MyModel implements MyInterface.ModelInter {
                     @Override
                     public void accept(Select_CinemaBean select_cinemaBean) throws Exception {
                         myCallBack.success(select_cinemaBean);
+                    }
+                });
+    }
+
+    @Override
+    public void doTicket(final Map<String, String> map, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestTicket(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        JSONObject object = new JSONObject(responseBody.string());
+                        String message = object.getString("message");
+                        String str = "";
+                        String orderId = "";
+                        if (message.equals("下单成功")){
+                            orderId = object.getString("orderId");
+
+                        }
+                        str = message+","+orderId;
+                        myCallBack.success(str);
                     }
                 });
     }

@@ -57,7 +57,7 @@ public class My_ziliaoBean {
         private long lastLoginTime;
         private String nickName;
         private String phone;
-        private String sex;
+        private int sex;
 
         public long getBirthday() {
             return birthday;
@@ -107,11 +107,11 @@ public class My_ziliaoBean {
             this.phone = phone;
         }
 
-        public String getSex() {
+        public int getSex() {
             return sex;
         }
 
-        public void setSex(String sex) {
+        public void setSex(int sex) {
             this.sex = sex;
         }
     }
