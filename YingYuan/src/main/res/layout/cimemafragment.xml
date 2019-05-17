@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-=======
+
+
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
     <ImageView
         android:id="@+id/cinema_img"
         android:layout_width="@dimen/dp_24"
@@ -87,4 +83,5 @@
         android:id="@+id/select_Cinemafu_recycler"
         android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
+</RelativeLayout>
 </RelativeLayout>

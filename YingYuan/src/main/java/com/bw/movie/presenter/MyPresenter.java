@@ -28,6 +28,17 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
     }
 
     @Override
+    public void toTicket(Map<String, String> map) {
+        final MyInterface.ViewInter.TicketInter ticketInter = (MyInterface.ViewInter.TicketInter) tt;
+        modelInter.doTicket(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                ticketInter.Ticket((String) object);
+            }
+        });
+    }
+
+    @Override
     public void toSchedule(Map<String, String> map) {
         final MyInterface.ViewInter.ScheduleInter scheduleInter = (MyInterface.ViewInter.ScheduleInter) tt;
         modelInter.doSchedule(map, new MyModel.MyCallBack() {

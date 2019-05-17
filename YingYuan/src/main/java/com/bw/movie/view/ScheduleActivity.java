@@ -3,10 +3,13 @@ package com.bw.movie.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.TextView;
 
+import com.bw.movie.adapter.MyScheduleAdapter;
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.inter.MyInterface;
@@ -14,7 +17,9 @@ import com.bw.movie.presenter.MyPresenter;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -41,6 +46,8 @@ public class ScheduleActivity extends AppCompatActivity implements MyInterface.V
     TextView detailAddressId;
     @BindView(R.id.schedule_recycler_id)
     RecyclerView scheduleRecyclerId;
+    List<ScheduleBean.ResultBean> list = new ArrayList<>();
+    private MyScheduleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,11 @@ public class ScheduleActivity extends AppCompatActivity implements MyInterface.V
         String address = intent.getStringExtra("address");
         scheduleMovieNameId.setText(name);
         scheduleMovieAddressId.setText(address);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        scheduleRecyclerId.setLayoutManager(layoutManager);
+        adapter = new MyScheduleAdapter(this,list);
+        scheduleRecyclerId.setAdapter(adapter);
         if (movieId != 0) {
             presenterInter.toMovieDetail(movieId);
         }
@@ -70,7 +82,8 @@ public class ScheduleActivity extends AppCompatActivity implements MyInterface.V
     @Override
     public void ScheduleInter(Object object) {
         ScheduleBean bean = (ScheduleBean) object;
-        Log.e("tag", bean.getMessage());
+        list.addAll(bean.getResult());
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -84,4 +97,17 @@ public class ScheduleActivity extends AppCompatActivity implements MyInterface.V
         scheduleTimeId.setText("时长:"+bean.getResult().getDuration());
         detailAddressId.setText("产地:"+bean.getResult().getPlaceOrigin());
     }
+
+    public void IntentPay(int i, int id, String beginTime, String endTime, String screeningHall,double price) {
+        Intent intent = new Intent(ScheduleActivity.this,PayActivity.class);
+        intent.putExtra("scheduleId",id);
+        intent.putExtra("seatsTotal",i);
+        intent.putExtra("beginTime",beginTime);
+        intent.putExtra("endTime",endTime);
+        intent.putExtra("screeningHall",screeningHall);
+        intent.putExtra("price",price);
+        startActivity(intent);
+    }
+
+
 }

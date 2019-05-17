@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import java.util.List;
  * @Date: 2019/5/12 20:38
  * @Description:
  */
-public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdapter.ViewHolder>{
+public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdapter.ViewHolder> implements MyInterface.ViewInter.FollowInter{
     List<ShowMovieBean.ResultBean> list;
     Context context;
     MyInterface.PresenterInter presenterInter;
@@ -38,16 +39,25 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
     public void setOnClickListener(mySetOnClick onClickListener){
         mySetOnClick = onClickListener;
     }
+
+    @Override
+    public void CancelFollowMovie(String string) {
+        Toast.makeText(context,string,Toast.LENGTH_SHORT).show();
+        //list.clear();
+        //presenterInter.toHotMovie();
+    }
+
+    @Override
+    public void FollowMovie(String string) {
+        Toast.makeText(context,string,Toast.LENGTH_SHORT).show();
+        //list.clear();
+        //presenterInter.toHotMovie();
+    }
+
     public interface mySetOnClick{
         void OnClick(int i);
     }
-    SetOnClick SetOnClick;
-    public void setFollowOnClickListener(SetOnClick onClickListener){
-        SetOnClick = onClickListener;
-    }
-    public interface SetOnClick{
-        void OnClick(int i);
-    }
+
 
     @NonNull
     @Override
@@ -69,14 +79,18 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
             }
         });
         if (list.get(position).getFollowMovie() == 2)
-            holder.follow.setImageResource(R.drawable.com_icon_collection_default_hdpi);
+            holder.checkBox.setChecked(false);
         else {
-            holder.follow.setImageResource(R.drawable.com_icon_collection_selected_hdpi);
+            holder.checkBox.setChecked(true);
         }
-        holder.follow.setOnClickListener(new View.OnClickListener() {
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SetOnClick.OnClick(position);
+                if (holder.checkBox.isChecked()){
+                    presenterInter.toFollowMovie(list.get(position).getId());
+                }else {
+                    presenterInter.toCancelFollowMovie(list.get(position).getId());
+                }
             }
         });
     }
@@ -90,7 +104,8 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        SimpleDraweeView simple,follow;
+        SimpleDraweeView simple;
+        CheckBox checkBox;
         TextView title,summary;
 
         public ViewHolder(View itemView) {
@@ -98,7 +113,7 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
             simple = itemView.findViewById(R.id.detail_simple_id);
             title = itemView.findViewById(R.id.detail_title_id);
             summary = itemView.findViewById(R.id.detail_summary_id);
-            follow = itemView.findViewById(R.id.detail_follow_id);
+            checkBox = itemView.findViewById(R.id.detail_follow_id);
         }
     }
 }

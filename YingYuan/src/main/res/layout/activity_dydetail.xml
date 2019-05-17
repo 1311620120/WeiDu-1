@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".DYDetailActivity"
     android:background="@mipmap/dain_ying_detail_bg">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dy_detail_background_id"
+        android:alpha="0.2"
+        android:layout_marginBottom="@dimen/dp_110"
+        android:scaleType="fitXY"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_110"
+        android:alpha="0.5"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/linear3_shape"></RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,12 +37,13 @@
             android:text="电影详情"
             android:textColor="#fff"
             android:layout_centerVertical="true"/>
-        <ImageView
+        <CheckBox
+            android:background="@drawable/follow_selector"
             android:layout_width="@dimen/dp_20"
             android:layout_height="@dimen/dp_20"
             android:id="@+id/dy_detail_follow_id"
             android:layout_alignParentRight="true"
-            />
+            android:button="@null"/>
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
@@ -43,6 +56,7 @@
         android:textColor="#fff"/>
     <com.facebook.drawee.view.SimpleDraweeView
         android:layout_width="match_parent"
+        android:scaleType="fitXY"
         android:layout_height="match_parent"
         android:id="@+id/dy_detail_simple_id"
         android:layout_below="@id/dy_detail_title_id"
@@ -131,11 +145,15 @@
                 android:layout_height="@dimen/dp_55"
                 android:id="@+id/dy_detail_back_id"
                 android:src="@mipmap/com_icon_my_default_hdpi"/>
-            <ImageView
-                android:layout_width="@dimen/dp_55"
-                android:layout_height="@dimen/dp_55"
-                android:src="@mipmap/ic_launcher"
+            <TextView
+                android:layout_width="@dimen/dp_54"
+                android:layout_height="@dimen/dp_54"
+                android:background="@drawable/text1_shape"
                 android:id="@+id/dy_detail_shop_id"
+                android:text="购票"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textSize="@dimen/sp_15"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
     </LinearLayout>
@@ -152,5 +170,9 @@
     <include layout="@layout/include_short"
         android:layout_width="match_parent"
         android:id="@+id/show_text_short_id"
+        android:layout_height="match_parent"/>
+    <include layout="@layout/include_poster"
+        android:layout_width="match_parent"
+        android:id="@+id/show_text_poster_id"
         android:layout_height="match_parent"/>
 </RelativeLayout>

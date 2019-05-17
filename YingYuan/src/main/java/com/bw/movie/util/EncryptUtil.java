@@ -6,6 +6,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by xyj on 2017/6/29.
@@ -17,7 +19,7 @@ public class EncryptUtil {
     private static final String IV = "67baweiyidong899";
 
     /**
-     *  加密
+     *  AES加密
      * @param passWord
      * @return
      * @throws Exception
@@ -38,7 +40,7 @@ public class EncryptUtil {
     }
 
     /**
-     *  解密
+     *  AES解密
      * @param password
      * @return
      * @throws Exception
@@ -65,5 +67,28 @@ public class EncryptUtil {
         String b = decrypt(a);
         System.err.println("解密后: " + b);
     }
+    //MD5加密
+    public static String crypt(String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException("String to encript cannot be null or zero length");
+        }
+        StringBuffer hexString = new StringBuffer();
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte[] hash = md.digest();
+            for (int i = 0; i < hash.length; i++) {
+                if ((0xff & hash[i]) < 0x10) {
+                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
+                } else {
+                    hexString.append(Integer.toHexString(0xFF & hash[i]));
+                }
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hexString.toString();
+    }
+
 
 }

@@ -27,8 +27,12 @@ public interface MyInterface {
         void doCommentReply(Map<String,String> map, MyModel.MyCallBack myCallBack);
         //根据电影ID查询当前排片该电影的影院列表
         void doByMovie(int movieId, MyModel.MyCallBack myCallBack);
+        //
+        void doTicket(Map<String,String> map, MyModel.MyCallBack myCallBack);
     }
     interface PresenterInter{
+        //
+        void toTicket(Map<String,String> map);
         //
         void toSchedule(Map<String,String> map);
         //根据电影ID查询当前排片该电影的影院列表
@@ -62,6 +66,9 @@ public interface MyInterface {
         void onDestroy();
     }
     interface ViewInter{
+        interface TicketInter{
+            void Ticket(String str);
+        }
         interface ScheduleInter{
             void ScheduleInter(Object object);
         }

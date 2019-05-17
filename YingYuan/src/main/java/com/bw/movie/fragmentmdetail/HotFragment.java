@@ -33,7 +33,7 @@ import butterknife.Unbinder;
  * @Date: 2019/5/13 8:45
  * @Description:
  */
-public class HotFragment extends Fragment implements MyInterface.ViewInter.HotMovie ,MyInterface.ViewInter.FollowInter {
+public class HotFragment extends Fragment implements MyInterface.ViewInter.HotMovie  {
 
     @BindView(R.id.hot_recycler_id)
     XRecyclerView hotRecyclerId;
@@ -76,16 +76,6 @@ public class HotFragment extends Fragment implements MyInterface.ViewInter.HotMo
                 startActivity(intent);
             }
         });
-        adapter.setFollowOnClickListener(new MyDetailMovieAdapter.SetOnClick() {
-            @Override
-            public void OnClick(int i) {
-                if (list.get(i).getFollowMovie() == 2){
-                    presenterInter.toFollowMovie(list.get(i).getId());
-                }else {
-                    presenterInter.toCancelFollowMovie(list.get(i).getId());
-                }
-            }
-        });
     }
 
     @Override
@@ -110,17 +100,5 @@ public class HotFragment extends Fragment implements MyInterface.ViewInter.HotMo
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void CancelFollowMovie(String string) {
-        Toast.makeText(getActivity(),string,Toast.LENGTH_SHORT).show();
-        list.clear();
-        presenterInter.toHotMovie();
-    }
 
-    @Override
-    public void FollowMovie(String string) {
-        Toast.makeText(getActivity(),string,Toast.LENGTH_SHORT).show();
-        list.clear();
-        presenterInter.toHotMovie();
-    }
 }

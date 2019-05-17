@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:width="2dp"/>
-    <stroke android:color="#333"/>
 
-=======
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:width="2dp"
-        android:color="#999"/>
->>>>>>> cda23c8fc281b71fb5feb1b3aaf061ec94fe912f
-    <corners android:radius="24dp"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+   
+
+
+</selector>

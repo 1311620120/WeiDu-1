@@ -28,6 +28,13 @@ public class MyHotMovieAdapter extends RecyclerView.Adapter<MyHotMovieAdapter.Vi
     List<ShowMovieBean.ResultBean> list;
     Context context;
 
+    setOnClick setOnClick;
+    public void setOnCLickListener(setOnClick onCLickListener){
+        setOnClick = onCLickListener;
+    }
+    public interface setOnClick{
+        void onClick(int j);
+    }
     public MyHotMovieAdapter(List<ShowMovieBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -41,10 +48,16 @@ public class MyHotMovieAdapter extends RecyclerView.Adapter<MyHotMovieAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.simple.setImageURI(list.get(position).getImageUrl());
         holder.simple.getHierarchy().setRoundingParams(RoundingParams.fromCornersRadius(20));
         holder.title.setText(list.get(position).getName());
+        holder.simple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOnClick.onClick(list.get(position).getId());
+            }
+        });
     }
 
     @Override
