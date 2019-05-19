@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PayActivity extends AppCompatActivity implements MyInterface.ViewInter.TicketInter {
+public class PayActivity extends BaseActivity implements MyInterface.ViewInter.TicketInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.pay_moveView_id)
@@ -194,6 +194,14 @@ public class PayActivity extends AppCompatActivity implements MyInterface.ViewIn
             case R.id.pay_close_id:
                 finish();
                 break;
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
         }
     }
 }

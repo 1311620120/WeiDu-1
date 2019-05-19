@@ -8,11 +8,7 @@
     tools:context=".ViewActivity"
     >
 
-<<<<<<< HEAD
     tools:context=".ViewActivity">
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 <com.hjm.bottomtabbar.BottomTabBar
     android:layout_width="match_parent"
     android:layout_height="match_parent"

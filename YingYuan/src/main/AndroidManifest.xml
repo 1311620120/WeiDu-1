@@ -11,12 +11,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -51,21 +50,18 @@
             android:value="Channel ID" />
 
         <activity android:name=".TicketActivity" />
-<<<<<<< HEAD
 
         <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
         <activity android:name="com.bw.movie.activity.MinessActivity"></activity>
 
         <activity android:name=".CommentReplyActivity" />
         <activity android:name=".ScheduleActivity"></activity>
-
-=======
-        <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
-        <activity android:name="com.bw.movie.activity.MinessActivity" />
-        <activity android:name=".CommentReplyActivity" />
-        <activity android:name=".ScheduleActivity" />
         <activity android:name=".PayActivity"></activity>
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+        <receiver android:name="com.bw.movie.service.NetBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

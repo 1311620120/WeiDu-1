@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.presenter.MinssPresenter;
+import com.bw.movie.view.BaseActivity;
 import com.bw.movie.view.R;
 
-public class MinessActivity extends AppCompatActivity  implements IMainView {
+public class MinessActivity extends BaseActivity implements IMainView {
 
     String userId;
     String sessionId;

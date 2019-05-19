@@ -75,7 +75,6 @@ public class MyCinecismAdapter extends RecyclerView.Adapter<MyCinecismAdapter.Vi
         holder.isgreatNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("tag",list.get(position).getCommentId()+"");
                 presenterInter.toCommentGreat(list.get(position).getCommentId());
             }
         });

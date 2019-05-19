@@ -1,5 +1,7 @@
 package com.bw.movie.util;
 
+import com.bw.movie.bean.CinemaCommentBean;
+import com.bw.movie.bean.CinemaInfoBean;
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.JiCineamBean;
 import com.bw.movie.bean.LoginBean;
@@ -13,23 +15,12 @@ import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.bean.ReplyBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
-import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
-<<<<<<< HEAD
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
 
-<<<<<<< HEAD
 
-import com.bw.movie.bean.MovieDetailBean;
-import com.bw.movie.bean.ShowMovieBean;
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 import com.bw.movie.data.Content;
 
 import java.util.Map;
@@ -42,21 +33,13 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -144,10 +127,6 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
    Observable<ResponseBody> minessss(@Header("userId") String userId,
                                         @Header("sessionId") String sessionId,
                                         @Field("content") String content);
-<<<<<<< HEAD
-=======
-
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
     //根据影院Id 影院即将上映电影排挡
     @GET("movieApi/movie/v1/findMovieListByCinemaId")
@@ -167,17 +146,21 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
     @GET("movieApi/movie/v1/findMovieScheduleList")
     Observable<ScheduleBean> requestSchedule(@QueryMap Map<String,String> map);
 
-<<<<<<< HEAD
-    /*"http://mobile.bwstudent.com/"
-    @GET("commodity/v1/findCommodityByCategory")
-    Observable<ResponseBody> get(@Query("categoryid") int id,
-                                 @Query("page") int page,
-                                 @Query("count") int count);*/
-=======
+
+
     //购票下单
     @FormUrlEncoded
     @POST("movieApi/movie/v1/verify/buyMovieTicket")
     Observable<ResponseBody> requestTicket(@FieldMap Map<String,String> map);
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
+
+    //影院 关注/取关
+    @GET()
+    Observable<ResponseBody> requestCinemaGet(@Url String url,@Query("cinemaId") int cinemaId);
+    //查询影院用户评论列表
+    @GET("movieApi/cinema/v1/findAllCinemaComment")
+    Observable<CinemaCommentBean> requestCinemaComment(@QueryMap Map<String,String> map);
+    //查询影院信息明细
+    @GET("movieApi/cinema/v1/findCinemaInfo")
+    Observable<CinemaInfoBean> requestCinemaInfo(@QueryMap Map<String,String> map);
 }

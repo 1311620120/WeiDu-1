@@ -17,6 +17,7 @@ import com.bw.movie.adapter.My_yizhiAdapter;
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_ShopBean;
 import com.bw.movie.presenter.My_ShopPresenter;
+import com.bw.movie.view.BaseActivity;
 import com.bw.movie.view.R;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ShopingActivity extends AppCompatActivity implements IMainView {
+public class ShopingActivity extends BaseActivity implements IMainView {
     String userId;
     String sessionId;
     int page = 1, count = 10;
