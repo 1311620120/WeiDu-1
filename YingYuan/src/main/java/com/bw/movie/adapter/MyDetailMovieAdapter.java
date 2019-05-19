@@ -43,15 +43,11 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
     @Override
     public void CancelFollowMovie(String string) {
         Toast.makeText(context,string,Toast.LENGTH_SHORT).show();
-        //list.clear();
-        //presenterInter.toHotMovie();
     }
 
     @Override
     public void FollowMovie(String string) {
         Toast.makeText(context,string,Toast.LENGTH_SHORT).show();
-        //list.clear();
-        //presenterInter.toHotMovie();
     }
 
     public interface mySetOnClick{

@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends AppCompatActivity implements MyInterface.ViewInter.RegisterInter {
+public class RegisterActivity extends BaseActivity implements MyInterface.ViewInter.RegisterInter {
 
     @BindView(R.id.register_name_id)
     EditText nameId;
@@ -114,5 +114,13 @@ public class RegisterActivity extends AppCompatActivity implements MyInterface.V
             e.printStackTrace();
         }*/
         return cls;
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
+        }
     }
 }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.adapter.MyTicketAdapter;
 import com.bw.movie.adapter.select_cinemaAdapter;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.inter.MyInterface;
@@ -20,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TicketActivity extends AppCompatActivity implements MyInterface.ViewInter.ByMovieInter {
+public class TicketActivity extends BaseActivity implements MyInterface.ViewInter.ByMovieInter {
 
 
     MyInterface.PresenterInter presenterInter;
@@ -29,7 +30,7 @@ public class TicketActivity extends AppCompatActivity implements MyInterface.Vie
     TextView ticketNameId;
     @BindView(R.id.ticket_recycler_id)
     RecyclerView ticketRecyclerId;
-    private select_cinemaAdapter select_cinemaAdapter;
+    private MyTicketAdapter select_cinemaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,13 @@ public class TicketActivity extends AppCompatActivity implements MyInterface.Vie
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         ticketRecyclerId.setLayoutManager(layoutManager);
-        select_cinemaAdapter = new select_cinemaAdapter(TicketActivity.this, result);
+        select_cinemaAdapter = new MyTicketAdapter(TicketActivity.this, result);
         ticketRecyclerId.setAdapter(select_cinemaAdapter);
         if (id != 0) {
             Toast.makeText(this, id + "", Toast.LENGTH_SHORT).show();
             presenterInter.toByMovie(id);
         }
-        select_cinemaAdapter.setOnClickListener(new select_cinemaAdapter.setOnClick() {
+        select_cinemaAdapter.setOnClickListener(new MyTicketAdapter.setOnClick() {
             @Override
             public void onClick(int j, String name, String cont) {
                 Intent intent = new Intent(TicketActivity.this,ScheduleActivity.class);
@@ -68,6 +69,15 @@ public class TicketActivity extends AppCompatActivity implements MyInterface.Vie
         if (bean.getMessage().equals("查询成功")){
             result.addAll(bean.getResult());
             select_cinemaAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
         }
     }
 }

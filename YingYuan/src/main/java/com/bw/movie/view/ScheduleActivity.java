@@ -25,7 +25,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ScheduleActivity extends AppCompatActivity implements MyInterface.ViewInter.DetailInter, MyInterface.ViewInter.ScheduleInter {
+public class ScheduleActivity extends BaseActivity implements MyInterface.ViewInter.DetailInter, MyInterface.ViewInter.ScheduleInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.schedule_movie_name_id)
@@ -108,6 +108,13 @@ public class ScheduleActivity extends AppCompatActivity implements MyInterface.V
         intent.putExtra("price",price);
         startActivity(intent);
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
+        }
+    }
 
 }

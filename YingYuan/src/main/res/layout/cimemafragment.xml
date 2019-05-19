@@ -6,6 +6,10 @@
     android:layout_height="wrap_content">
 
 
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 
 
 <RelativeLayout
@@ -70,18 +74,19 @@
             android:paddingBottom="@dimen/dp_5"/>
         </RadioGroup>
     </LinearLayout>
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/la"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/select_cinema_recycler"
-        android:visibility="visible"></com.jcodecraeer.xrecyclerview.XRecyclerView>
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:visibility="visible"></android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/la"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/select_Cinemafu_recycler"
-        android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+        android:visibility="gone"></android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>
 </RelativeLayout>

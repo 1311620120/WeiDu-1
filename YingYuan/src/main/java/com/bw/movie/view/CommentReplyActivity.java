@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CommentReplyActivity extends AppCompatActivity implements MyInterface.ViewInter.CommentReplyInter {
+public class CommentReplyActivity extends BaseActivity implements MyInterface.ViewInter.CommentReplyInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.comment_replay_recycler_id)
@@ -100,6 +100,14 @@ public class CommentReplyActivity extends AppCompatActivity implements MyInterfa
             case R.id.comment_replay_image_id:
                 editCinecismRelativeId.setVisibility(View.VISIBLE);
                 break;
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
         }
     }
 }

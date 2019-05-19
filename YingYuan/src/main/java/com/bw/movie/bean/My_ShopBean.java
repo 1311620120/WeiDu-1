@@ -68,7 +68,7 @@ public class My_ShopBean {
         private String orderId;
         private String price;
         private String screeningHall;
-        private String status;
+        private int status;
         private String userId;
 
         public String getAmount() {
@@ -151,11 +151,11 @@ public class My_ShopBean {
             this.screeningHall = screeningHall;
         }
 
-        public String getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 

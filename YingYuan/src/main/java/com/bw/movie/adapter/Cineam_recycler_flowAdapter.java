@@ -10,13 +10,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.activity.Select_CineamActivity;
-import com.bw.movie.bean.Select_CinemaIdBean;
+import com.bw.movie.bean.JiCineamBean;
+
 import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.view.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import recycler.coverflow.RecyclerCoverFlow;
@@ -27,13 +29,15 @@ import recycler.coverflow.RecyclerCoverFlow;
  * @Description:
  */
 public class Cineam_recycler_flowAdapter extends RecyclerCoverFlow.Adapter<Cineam_recycler_flowAdapter.ViewHolder>{
-    Context context; List<ShowMovieBean.ResultBean> result;
+    Context context;List<JiCineamBean.ResultBean> result;
     Select_CineamActivity activity;
-    public Cineam_recycler_flowAdapter(Context context, List<ShowMovieBean.ResultBean> result) {
+    public Cineam_recycler_flowAdapter(Context context,List<JiCineamBean.ResultBean> result) {
         this.context=context;
         this.result=result;
         activity = (Select_CineamActivity) context;
     }
+
+
 
     @NonNull
     @Override
@@ -47,11 +51,16 @@ public class Cineam_recycler_flowAdapter extends RecyclerCoverFlow.Adapter<Cinea
         holder.simple.setImageURI(result.get(position).getImageUrl());
         holder.simple.getHierarchy().setRoundingParams(RoundingParams.fromCornersRadius(20));
         holder.title.setText(result.get(position).getName());
-        holder.time.setText(result.get(position).getReleaseTimeShow());
+
+//        Date date = new Date(movieList.get(position).getReleaseTime());
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:ss:mm");
+//        holder.time.setText(format.format(date));
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+               Log.e("aaaa","影片Id"+result.get(position).getId());
                activity.SelectId(result.get(position).getId());
+
            }
        });
     }
@@ -60,7 +69,10 @@ public class Cineam_recycler_flowAdapter extends RecyclerCoverFlow.Adapter<Cinea
 
     @Override
     public int getItemCount() {
-        return result.size();
+        if (result!=null){
+            return result.size();
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

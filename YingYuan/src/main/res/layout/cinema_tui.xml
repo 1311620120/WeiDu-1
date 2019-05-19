@@ -61,15 +61,15 @@
                 android:text="hahaha"
                 android:textSize="@dimen/sp_12" />
 
-            <ImageView
+            <CheckBox
                 android:id="@+id/cinema_dianzan"
-
+                android:background="@drawable/follow_selector"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
-                  android:layout_alignParentRight="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dp_60"
                 android:layout_marginRight="@dimen/dp_30"
-                android:src="@mipmap/com_icon_collection_default_xhdpi" />
+                android:button="@null"/>
         </RelativeLayout>
 
 

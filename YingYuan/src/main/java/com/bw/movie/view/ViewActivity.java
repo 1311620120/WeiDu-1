@@ -10,7 +10,7 @@ import com.hjm.bottomtabbar.BottomTabBar;
 
 import java.util.HashMap;
 
-public class ViewActivity extends AppCompatActivity {
+public class ViewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

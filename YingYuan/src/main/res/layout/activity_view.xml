@@ -8,6 +8,7 @@
     tools:context=".ViewActivity"
     >
 
+    tools:context=".ViewActivity">
 <com.hjm.bottomtabbar.BottomTabBar
     android:layout_width="match_parent"
     android:layout_height="match_parent"

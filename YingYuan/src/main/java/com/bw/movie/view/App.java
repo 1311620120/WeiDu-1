@@ -1,16 +1,21 @@
 package com.bw.movie.view;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.database.sqlite.SQLiteDatabase;
+
+
 
 import com.bw.movie.greendao.gen.DaoMaster;
 import com.bw.movie.greendao.gen.DaoSession;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 
+
+
+
 import com.umeng.commonsdk.UMConfigure;
+
 
 /**
  * @Author: zhang
@@ -19,8 +24,12 @@ import com.umeng.commonsdk.UMConfigure;
  */
 public class App extends Application {
 
+
     public static int id;
+
     public static DaoSession dao;
+
+
 
     @Override
     public void onCreate() {
@@ -31,6 +40,7 @@ public class App extends Application {
         DaoMaster.DevOpenHelper user = new DaoMaster.DevOpenHelper(this, "user");
         SQLiteDatabase userDatabase = user.getWritableDatabase();
         dao = new DaoMaster(userDatabase).newSession();
+
     }
 
 }

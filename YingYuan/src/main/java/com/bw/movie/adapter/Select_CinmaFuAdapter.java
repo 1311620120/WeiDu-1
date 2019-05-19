@@ -1,14 +1,17 @@
 package com.bw.movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
 import com.bw.movie.view.R;
@@ -40,11 +43,26 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.cineam_diess.setText(result.get(position).getAddress());
         holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
         holder.cineam_title.setText(result.get(position).getName());
         holder.cinema_logo.setImageURI(result.get(position).getLogo());
+        holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(context, Select_CineamActivity.class);
+                intent.putExtra("id",result.get(position).getId());
+                intent.putExtra("name",result.get(position).getName());
+                intent.putExtra("logo",result.get(position).getLogo());
+                intent.putExtra("saddress", result.get(position).getAddress());
+                context.startActivity(intent);
+
+
+            }
+        });
     }
 
 
@@ -61,7 +79,7 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
         TextView cineam_title;
         TextView cineam_juli;
         TextView cineam_diess;
-        ImageView cinema_dianzan;
+        CheckBox cinema_dianzan;
         public ViewHolder(View itemView) {
             super(itemView);
             cinema_logo = itemView.findViewById(R.id.cinema_logo);

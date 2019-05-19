@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.bw.movie.bai.BasePresenter;
 import com.bw.movie.bai.IMainView;
+import com.bw.movie.bean.JiCineamBean;
+import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.util.RetrofitUtil;
 
@@ -24,19 +26,15 @@ public class Select_CineamIdPresenter extends BasePresenter<IMainView> {
     public  Select_CineamIdPresenter(){
         instance = RetrofitUtil.getInstance();
       }
-      public  void Select_Cineam_IdData(String userId ,String sessionId,int cinemasId,int movieId){
-          Observable<Select_CinemaIdBean> select_cinemaIdBeanObservable = instance.api.SelectCinemaId(userId,sessionId,cinemasId,movieId);
-          select_cinemaIdBeanObservable.subscribeOn(Schedulers.io())
+
+      public  void  ji_Cineam_IdData(String userId,String sessionId,int cinemaId){
+          Observable<JiCineamBean> jiCineamBeanObservable = instance.api.SelectjiCinemaId(userId,sessionId,cinemaId);
+          jiCineamBeanObservable.subscribeOn(Schedulers.io())
                   .observeOn(AndroidSchedulers.mainThread())
-                  .subscribe(new Consumer<Select_CinemaIdBean>() {
+                  .subscribe(new Consumer<JiCineamBean>() {
                       @Override
-                      public void accept(Select_CinemaIdBean select_cinemaIdBean) throws Exception {
-                          getView().onCheng(select_cinemaIdBean);
-                      }
-                  }, new Consumer<Throwable>() {
-                      @Override
-                      public void accept(Throwable throwable) throws Exception {
-                          Log.e("aaaa", "查询失败 "+throwable.toString());
+                      public void accept(JiCineamBean jiCineamBean) throws Exception {
+                          getView().onCheng(jiCineamBean);
                       }
                   });
       }

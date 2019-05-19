@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,21 +49,20 @@ import butterknife.Unbinder;
 public class CinemaFragment extends Fragment implements IMainView {
     String userId;
     String sessionId;
-    int page = 1, count = 10;
+    int page = 1, count = 20;
+     String longitude= "116.30551391385724";
+    String latitude="40.04571807462411";
     @BindView(R.id.select_Cinema_but_tui)
     RadioButton selectCinemaButTui;
     @BindView(R.id.select_Cinema_but_fujin)
     RadioButton selectCinemaButFujin;
     @BindView(R.id.la)
     LinearLayout la;
-    @BindView(R.id.select_cinema_recycler)
-    XRecyclerView selectCinemaRecycler;
-    @BindView(R.id.select_Cinemafu_recycler)
-    XRecyclerView selectCinemafuRecycler;
+
     Unbinder unbinder;
     private View view;
-    private XRecyclerView select_cinema_recycler;
-    private XRecyclerView select_cinemafu_recycler;
+    private RecyclerView select_cinema_recycler;
+    private RecyclerView select_cinemafu_recycler;
     private Select_Cinema_Presenter select_cinema_presenter;
     private com.bw.movie.adapter.select_cinemaAdapter select_cinemaAdapter;
     private Select_CinmaFuAdapter select_cinmaFuAdapter;
@@ -97,51 +98,6 @@ public class CinemaFragment extends Fragment implements IMainView {
         linearLayout.setOrientation(OrientationHelper.VERTICAL);
         select_cinemafu_recycler.setLayoutManager(linearLayout);
 
-        select_cinema_recycler.setPullRefreshEnabled(true);
-        select_cinema_recycler.setLoadingMoreEnabled(true);
-
-        select_cinemafu_recycler.setPullRefreshEnabled(true);
-        select_cinemafu_recycler.setLoadingMoreEnabled(true);
-
-        select_cinema_recycler.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                page = 1;
-                select_cinema_presenter.SeleteTuiData(userId, sessionId, page, count);
-                select_cinema_recycler.refreshComplete();
-                select_cinemaAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onLoadMore() {
-                page++;
-                select_cinema_recycler.loadMoreComplete();
-                select_cinema_presenter.SeleteTuiData(userId, sessionId, page, count);
-                select_cinemaAdapter.notifyDataSetChanged();
-
-            }
-        });
-
-        select_cinemafu_recycler.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                page = 1;
-                select_cinema_presenter.SeletefujinData(userId, sessionId, page, count);
-                select_cinemafu_recycler.refreshComplete();
-                select_cinmaFuAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onLoadMore() {
-                page++;
-                select_cinema_presenter.SeletefujinData(userId, sessionId, page, count);
-                select_cinemafu_recycler.loadMoreComplete();
-                ;
-
-                select_cinmaFuAdapter.notifyDataSetChanged();
-
-            }
-        });
 
     }
 
@@ -180,7 +136,7 @@ public class CinemaFragment extends Fragment implements IMainView {
             case R.id.select_Cinema_but_fujin:
                 select_cinema_recycler.setVisibility(View.GONE);
                 select_cinemafu_recycler.setVisibility(View.VISIBLE);
-                select_cinema_presenter.SeletefujinData(userId, sessionId, page, count);
+                select_cinema_presenter.SeletefujinData(userId, sessionId,longitude,latitude, page, count);
                 break;
         }
     }

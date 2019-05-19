@@ -21,16 +21,30 @@ public interface MyInterface {
         void doMovieDetail(int movieId, MyModel.MyCallBack myCallBack);
         //影片评论
         void doComment(Map<String,String> map, MyModel.MyCallBack myCallBack);
-        //关注/取关
+        //电影:关注/取关
         void doGet(String url,int movieId, MyModel.MyCallBack myCallBack);
+        //影院:关注/取关
+        void doCinemaGet(String url,int cinemaId, MyModel.MyCallBack myCallBack);
         //查看评论回复数据
         void doCommentReply(Map<String,String> map, MyModel.MyCallBack myCallBack);
         //根据电影ID查询当前排片该电影的影院列表
         void doByMovie(int movieId, MyModel.MyCallBack myCallBack);
         //
         void doTicket(Map<String,String> map, MyModel.MyCallBack myCallBack);
+        //影院信息
+        void doCinemaInfo(Map<String,String> map, MyModel.MyCallBack myCallBack);
+        //影院评论
+        void doCinemaComment(Map<String,String> map, MyModel.MyCallBack myCallBack);
     }
     interface PresenterInter{
+        //影院信息
+        void toCinemaInfo(Map<String,String> map);
+        //影院评论
+        void toCinemaComment(Map<String,String> map);
+        //影院关注
+        void toFollowCinema(int cinemaId);
+        //影院取关
+        void toCancelFollowCinema(int cinemaId);
         //
         void toTicket(Map<String,String> map);
         //
@@ -66,6 +80,14 @@ public interface MyInterface {
         void onDestroy();
     }
     interface ViewInter{
+        //影院信息
+        interface CinemaInfoInter{
+            void CinemaInfo(Object object);
+        }
+        //影院评论
+        interface CinemaCommentInter{
+            void CinemaComment(Object object);
+        }
         interface TicketInter{
             void Ticket(String str);
         }
@@ -109,6 +131,10 @@ public interface MyInterface {
         }
         interface ByMovieInter{
             void ByMovie(Object object);
+        }
+        interface CinemaFollowInter{
+            void Follow(String str);
+            void CancelFollow(String str);
         }
     }
 }

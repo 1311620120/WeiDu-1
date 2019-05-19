@@ -17,6 +17,7 @@ import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_CinemaBean;
 import com.bw.movie.bean.My_filmBean;
 import com.bw.movie.presenter.My_film_cinema;
+import com.bw.movie.view.BaseActivity;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -27,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GuanzuActivity extends AppCompatActivity implements IMainView, View.OnClickListener {
+public class GuanzuActivity extends BaseActivity implements IMainView, View.OnClickListener {
     String userId;
     String sessionId;
     int page=1,count=10;
@@ -164,5 +165,14 @@ public class GuanzuActivity extends AppCompatActivity implements IMainView, View
 
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (my_film_cinema==null){
+            my_film_cinema.detacher();
+        }
+
     }
 }

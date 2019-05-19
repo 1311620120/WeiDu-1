@@ -28,6 +28,50 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
     }
 
     @Override
+    public void toCinemaInfo(Map<String, String> map) {
+        final MyInterface.ViewInter.CinemaInfoInter cinemaInfoInter = (MyInterface.ViewInter.CinemaInfoInter) tt;
+        modelInter.doCinemaInfo(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                cinemaInfoInter.CinemaInfo(object);
+            }
+        });
+    }
+
+    @Override
+    public void toCinemaComment(Map<String, String> map) {
+        final MyInterface.ViewInter.CinemaCommentInter cinemaCommentInter = (MyInterface.ViewInter.CinemaCommentInter) tt;
+        modelInter.doCinemaComment(map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                cinemaCommentInter.CinemaComment(object);
+            }
+        });
+    }
+
+    @Override
+    public void toFollowCinema(int cinemaId) {
+        final MyInterface.ViewInter.CinemaFollowInter cinemaFollowInter = (MyInterface.ViewInter.CinemaFollowInter) tt;
+        modelInter.doCinemaGet(Content.FollowCinema, cinemaId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                cinemaFollowInter.Follow((String) object);
+            }
+        });
+    }
+
+    @Override
+    public void toCancelFollowCinema(int cinemaId) {
+        final MyInterface.ViewInter.CinemaFollowInter cinemaFollowInter = (MyInterface.ViewInter.CinemaFollowInter) tt;
+        modelInter.doCinemaGet(Content.CancelFollowCinema, cinemaId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                cinemaFollowInter.CancelFollow((String) object);
+            }
+        });
+    }
+
+    @Override
     public void toTicket(Map<String, String> map) {
         final MyInterface.ViewInter.TicketInter ticketInter = (MyInterface.ViewInter.TicketInter) tt;
         modelInter.doTicket(map, new MyModel.MyCallBack() {
