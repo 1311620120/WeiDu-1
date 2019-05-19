@@ -8,12 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
+import com.bw.movie.inter.MyInterface;
+import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.App;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -30,17 +34,36 @@ import retrofit2.http.HEAD;
  * @Date: 2019/5/13 19:37:51
  * @Description:
  */
+<<<<<<< HEAD
 public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
+=======
+public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> implements MyInterface.ViewInter.CinemaFollowInter{
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
     Context context;
     List<Select_CinemaBean.ResultBean> result;
+    MyInterface.PresenterInter presenterInter;
     public select_cinemaAdapter(Context context, List<Select_CinemaBean.ResultBean> result) {
         this.context=context;
         this.result=result;
+        presenterInter = new MyPresenter<>(this);
     }
     setOnClick setOnClick;
     public void setOnClickListener(setOnClick onClickListener){
         setOnClick = onClickListener;
     }
+
+
+
+    @Override
+    public void Follow(String str) {
+        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void CancelFollow(String str) {
+        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
+    }
+
     public interface setOnClick{
         void onClick(int j,String name,String cont);
     }
@@ -54,6 +77,7 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+<<<<<<< HEAD
 
         holder.cineam_diess.setText(result.get(position).getAddress());
         holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
@@ -73,6 +97,29 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+=======
+                holder.cineam_diess.setText(result.get(position).getAddress());
+                holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
+                holder.cineam_title.setText(result.get(position).getName());
+                holder.cinema_logo.setImageURI(result.get(position).getLogo());
+        if (result.get(position).getFollowCinema() == 2) {
+            holder.checkBox.setChecked(false);
+        }else {
+            holder.checkBox.setChecked(true);
+        }
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("tag",holder.checkBox.isChecked()+"");
+                if (holder.checkBox.isChecked()){
+                    presenterInter.toFollowCinema(result.get(position).getId());
+                }else {
+                    presenterInter.toCancelFollowCinema(result.get(position).getId());
+                }
+            }
+        });
+        holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 
             @Override
             public void onClick(View v) {
@@ -88,12 +135,16 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
 
             }
         });
+<<<<<<< HEAD
         holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
             }
         });
+=======
+
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 
     }
 
@@ -110,7 +161,7 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
         private final TextView cineam_title;
         private final TextView cineam_juli;
         private final TextView cineam_diess;
-        private final ImageView cinema_dianzan;
+        private final CheckBox checkBox;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -118,7 +169,11 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
             cineam_title = itemView.findViewById(R.id.cineam_title);
             cineam_juli = itemView.findViewById(R.id.cineam_juli);
             cineam_diess = itemView.findViewById(R.id.cineam_diess);
-            cinema_dianzan = itemView.findViewById(R.id.cinema_dianzan);
+            checkBox = itemView.findViewById(R.id.cinema_dianzan);
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b

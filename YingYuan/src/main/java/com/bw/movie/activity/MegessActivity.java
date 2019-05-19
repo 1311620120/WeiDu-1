@@ -15,12 +15,13 @@ import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_MegessBean;
 import com.bw.movie.presenter.MegessPresenter;
 import com.bw.movie.util.AlertAndAnimationUtils;
+import com.bw.movie.view.BaseActivity;
 import com.bw.movie.view.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
-public class MegessActivity extends AppCompatActivity implements IMainView {
+public class MegessActivity extends BaseActivity implements IMainView {
     String userId;
     String sessionId;
     int page=1,count=10;

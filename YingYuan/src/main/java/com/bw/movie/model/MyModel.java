@@ -2,6 +2,8 @@ package com.bw.movie.model;
 
 import android.util.Log;
 
+import com.bw.movie.bean.CinemaCommentBean;
+import com.bw.movie.bean.CinemaInfoBean;
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MovieDetailBean;
@@ -29,7 +31,7 @@ import okhttp3.ResponseBody;
  */
 public class MyModel implements MyInterface.ModelInter {
     MyCallBack myCallBack;
-    int i = 1;
+
 
     @Override
     public void doSchedule(Map<String, String> map, final MyCallBack myCallBack) {
@@ -141,6 +143,23 @@ public class MyModel implements MyInterface.ModelInter {
     }
 
     @Override
+    public void doCinemaGet(String url, int cinemaId, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestGet(url,cinemaId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        JSONObject object = new JSONObject(responseBody.string());
+                        String json = object.getString("message");
+                        myCallBack.success(json);
+                    }
+                });
+    }
+
+    @Override
     public void doCommentReply(Map<String, String> map, final MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
         RetrofitUtil.getInstance().getApi(Api.class)
@@ -186,10 +205,39 @@ public class MyModel implements MyInterface.ModelInter {
                         String orderId = "";
                         if (message.equals("下单成功")){
                             orderId = object.getString("orderId");
-
                         }
                         str = message+","+orderId;
                         myCallBack.success(str);
+                    }
+                });
+    }
+
+    @Override
+    public void doCinemaInfo(Map<String, String> map, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestCinemaInfo(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<CinemaInfoBean>() {
+                    @Override
+                    public void accept(CinemaInfoBean cinemaInfoBean) throws Exception {
+                        myCallBack.success(cinemaInfoBean);
+                    }
+                });
+    }
+
+    @Override
+    public void doCinemaComment(Map<String, String> map, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .requestCinemaComment(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<CinemaCommentBean>() {
+                    @Override
+                    public void accept(CinemaCommentBean cinemaCommentBean) throws Exception {
+                        myCallBack.success(cinemaCommentBean);
                     }
                 });
     }

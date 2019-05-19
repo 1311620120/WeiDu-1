@@ -1,7 +1,9 @@
 package com.bw.movie.view;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +18,9 @@ import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MyIdBean;
 import com.bw.movie.greendao.gen.MyIdBeanDao;
 import com.bw.movie.inter.MyInterface;
+import com.bw.movie.net.NetWork;
 import com.bw.movie.presenter.MyPresenter;
+import com.bw.movie.service.NetBroadcastReceiver;
 import com.bw.movie.util.EncryptUtil;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
@@ -27,7 +31,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+<<<<<<< HEAD
 public class LoginActivity extends AppCompatActivity implements  MyInterface.ViewInter.LoginInter {
+=======
+public class LoginActivity extends BaseActivity implements MyInterface.ViewInter.LoginInter {
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 
     @BindView(R.id.login_phone_id)
     EditText phoneId;
@@ -57,8 +65,11 @@ public class LoginActivity extends AppCompatActivity implements  MyInterface.Vie
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
         presenterInter = new MyPresenter<>(this);
         sp = getSharedPreferences("myId", MODE_PRIVATE);
         edit = sp.edit();
@@ -69,9 +80,13 @@ public class LoginActivity extends AppCompatActivity implements  MyInterface.Vie
         loginCheckboxPwdId.setChecked(flag);
         loginCheckboxPhoneId.setChecked(b);
         if (b) {
-            Intent intent = new Intent(this, ViewActivity.class);
-            startActivity(intent);
-            finish();
+            String phone = user.getString("phone", null);
+            String pwd = user.getString("pwd", null);
+            String encrypt = EncryptUtil.encrypt(pwd);
+            Map<String, String> map = new HashMap<>();
+            map.put("phone", phone);
+            map.put("pwd", encrypt);
+            presenterInter.toLogin(map);
         }
         if (flag) {
             String phone = user.getString("phone", null);
@@ -83,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements  MyInterface.Vie
             pwdId.setText("");
         }
         dao = App.dao.getMyIdBeanDao();
+
     }
 
     @OnClick({R.id.login_checkbox_pwd_id, R.id.login_checkbox_phone_id, R.id.to_register, R.id.intent_login})
@@ -97,26 +113,28 @@ public class LoginActivity extends AppCompatActivity implements  MyInterface.Vie
                 startActivity(intent);
                 break;
             case R.id.intent_login:
-                String phone = phoneId.getText().toString();
-                String pwd = pwdId.getText().toString();
-                String encrypt = EncryptUtil.encrypt(pwd);
-                Map<String, String> map = new HashMap<>();
-                map.put("phone", phone);
-                map.put("pwd", encrypt);
-                if (loginCheckboxPwdId.isChecked()) {
-                    editor.putString("phone", phone);
-                    editor.putString("pwd", pwd);
-                    editor.putBoolean("flag", true);
-                } else {
-                    editor.putBoolean("flag", false);
+                if (NetWork.getNetWorkState(this) != -1) {
+                    String phone = phoneId.getText().toString();
+                    String pwd = pwdId.getText().toString();
+                    String encrypt = EncryptUtil.encrypt(pwd);
+                    Map<String, String> map = new HashMap<>();
+                    map.put("phone", phone);
+                    map.put("pwd", encrypt);
+                    if (loginCheckboxPwdId.isChecked()) {
+                        editor.putString("phone", phone);
+                        editor.putString("pwd", pwd);
+                        editor.putBoolean("flag", true);
+                    } else {
+                        editor.putBoolean("flag", false);
+                    }
+                    if (loginCheckboxPhoneId.isChecked()) {
+                        editor.putBoolean("b", true);
+                    } else {
+                        editor.putBoolean("b", false);
+                    }
+                    editor.commit();
+                    presenterInter.toLogin(map);
                 }
-                if (loginCheckboxPhoneId.isChecked()) {
-                    editor.putBoolean("b", true);
-                } else {
-                    editor.putBoolean("b", false);
-                }
-                editor.commit();
-                presenterInter.toLogin(map);
                 break;
         }
     }
@@ -163,6 +181,17 @@ public class LoginActivity extends AppCompatActivity implements  MyInterface.Vie
 
 //        }
     }
+<<<<<<< HEAD
+=======
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
+        }
+    }
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 
 
 }

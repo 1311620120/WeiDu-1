@@ -37,7 +37,7 @@ import butterknife.OnClick;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
-public class DYDetailActivity extends AppCompatActivity implements MyInterface.ViewInter.DetailInter
+public class DYDetailActivity extends BaseActivity implements MyInterface.ViewInter.DetailInter
         , MyInterface.ViewInter.FollowInter
         , MyInterface.ViewInter.CommentInter
         , MyInterface.ViewInter.MovieCommentInter {
@@ -299,8 +299,10 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenterInter.onDestroy();
-        presenterInter = null;
+        if (presenterInter != null){
+            presenterInter.onDestroy();
+            presenterInter = null;
+        }
     }
 
     @Override

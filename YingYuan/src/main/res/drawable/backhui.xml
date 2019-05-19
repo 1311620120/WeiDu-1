@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
     <stroke android:width="2dp"/>
     <stroke android:color="#333"/>
 </selector>
 
+<<<<<<< HEAD
 
    
 
 
 
 
+=======
+   
+
+
+>>>>>>> 734b7637320a7dd90639c2837b205afc372c760b

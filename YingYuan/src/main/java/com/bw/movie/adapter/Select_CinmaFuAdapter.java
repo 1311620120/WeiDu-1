@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
         holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
         holder.cineam_title.setText(result.get(position).getName());
         holder.cinema_logo.setImageURI(result.get(position).getLogo());
-        holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
+        holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -78,7 +79,7 @@ public class Select_CinmaFuAdapter extends RecyclerView.Adapter<Select_CinmaFuAd
         TextView cineam_title;
         TextView cineam_juli;
         TextView cineam_diess;
-        ImageView cinema_dianzan;
+        CheckBox cinema_dianzan;
         public ViewHolder(View itemView) {
             super(itemView);
             cinema_logo = itemView.findViewById(R.id.cinema_logo);

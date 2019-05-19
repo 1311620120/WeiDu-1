@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PagerActivity extends AppCompatActivity {
+public class PagerActivity extends BaseActivity {
 
     @BindView(R.id.viewPager_id)
     ViewPager viewPagerId;

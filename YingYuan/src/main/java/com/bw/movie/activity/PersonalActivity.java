@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.presenter.MyziliaoPresenter;
+import com.bw.movie.view.BaseActivity;
 import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -20,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PersonalActivity extends AppCompatActivity implements IMainView {
+public class PersonalActivity extends BaseActivity implements IMainView {
     String userId;
     String sessionId;
     @BindView(R.id.view1)

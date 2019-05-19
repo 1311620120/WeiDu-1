@@ -26,4 +26,8 @@ public class Content {
     public static final String CommentGreat = "movieApi/movie/v1/verify/movieCommentGreat";
     //用户对评论的回复
     public static final String AddCommentReply = "movieApi/movie/v1/verify/commentReply";
+    //
+    public static final String FollowCinema = "movieApi/cinema/v1/verify/followCinema";
+
+    public static final String CancelFollowCinema = "movieApi/cinema/v1/verify/cancelFollowCinema";
 }

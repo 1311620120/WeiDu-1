@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends BaseActivity {
 
     @BindView(R.id.radioGroup_detail_id)
     RadioGroup radioGroupDetailId;
@@ -96,4 +96,5 @@ public class MovieDetailActivity extends AppCompatActivity {
     public void onViewClicked() {
         finish();
     }
+
 }

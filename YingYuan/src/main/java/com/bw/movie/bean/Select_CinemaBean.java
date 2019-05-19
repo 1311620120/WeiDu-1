@@ -61,6 +61,19 @@ public class Select_CinemaBean {
         private String logo;
         private String name;
 
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "address='" + address + '\'' +
+                    ", commentTotal='" + commentTotal + '\'' +
+                    ", distance=" + distance +
+                    ", followCinema=" + followCinema +
+                    ", id=" + id +
+                    ", logo='" + logo + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
         public String getAddress() {
             return address;
         }
