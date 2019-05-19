@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +18,7 @@ import com.bw.movie.greendao.gen.MyIdBeanDao;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements MyInterface.ViewInter.LoginInter {
+public class LoginActivity extends AppCompatActivity implements  MyInterface.ViewInter.LoginInter {
 
     @BindView(R.id.login_phone_id)
     EditText phoneId;
@@ -50,12 +50,15 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
     private SharedPreferences user;
     private SharedPreferences.Editor editor;
     private MyIdBeanDao dao;
-
+  String code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+
+
         presenterInter = new MyPresenter<>(this);
         sp = getSharedPreferences("myId", MODE_PRIVATE);
         edit = sp.edit();
@@ -149,6 +152,17 @@ public class LoginActivity extends AppCompatActivity implements MyInterface.View
 
     @OnClick(R.id.wx_deng_lu_id)
     public void onViewClicked() {
+//        if (!WeiXinUtil.success(LoginActivity.this)) {
+//            Toast.makeText(LoginActivity.this, "请先安装应用", Toast.LENGTH_SHORT).show();
+//        } else {
+//            //  验证
+//            SendAuth.Req req = new SendAuth.Req();
+//            req.scope = "snsapi_userinfo";
+//            req.state = "wechat_sdk_demo_test_neng";
+//            WeiXinUtil.reg(LoginActivity.this).sendReq(req);
 
+//        }
     }
+
+
 }

@@ -15,23 +15,21 @@ import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinemaIdBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
-<<<<<<< HEAD
 
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
 
-<<<<<<< HEAD
+
 
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
 
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+
+import com.bw.movie.bean.Wx_LoginBean;
 import com.bw.movie.data.Content;
 
+import java.text.Normalizer;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -42,21 +40,12 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -144,10 +133,7 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
    Observable<ResponseBody> minessss(@Header("userId") String userId,
                                         @Header("sessionId") String sessionId,
                                         @Field("content") String content);
-<<<<<<< HEAD
-=======
 
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
     //根据影院Id 影院即将上映电影排挡
     @GET("movieApi/movie/v1/findMovieListByCinemaId")
@@ -167,17 +153,21 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
     @GET("movieApi/movie/v1/findMovieScheduleList")
     Observable<ScheduleBean> requestSchedule(@QueryMap Map<String,String> map);
 
-<<<<<<< HEAD
+
     /*"http://mobile.bwstudent.com/"
     @GET("commodity/v1/findCommodityByCategory")
     Observable<ResponseBody> get(@Query("categoryid") int id,
                                  @Query("page") int page,
                                  @Query("count") int count);*/
-=======
+
     //购票下单
     @FormUrlEncoded
     @POST("movieApi/movie/v1/verify/buyMovieTicket")
     Observable<ResponseBody> requestTicket(@FieldMap Map<String,String> map);
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
 
+
+    //微信登录
+
+    @POST("movieApi/user/v1/weChatBindingLogin")
+    Observable <Wx_LoginBean> WX_Login(@Query("code") String code);
 }

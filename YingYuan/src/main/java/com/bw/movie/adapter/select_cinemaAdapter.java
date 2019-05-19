@@ -30,7 +30,7 @@ import retrofit2.http.HEAD;
  * @Date: 2019/5/13 19:37:51
  * @Description:
  */
-public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
+public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
     Context context;
     List<Select_CinemaBean.ResultBean> result;
     public select_cinemaAdapter(Context context, List<Select_CinemaBean.ResultBean> result) {
@@ -53,31 +53,27 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
     }
 
     @Override
-<<<<<<< HEAD
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-=======
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
-
-                holder.cineam_diess.setText(result.get(position).getAddress());
-                holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
-                holder.cineam_title.setText(result.get(position).getName());
-                holder.cinema_logo.setImageURI(result.get(position).getLogo());
+        holder.cineam_diess.setText(result.get(position).getAddress());
+        holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
+        holder.cineam_title.setText(result.get(position).getName());
+        holder.cinema_logo.setImageURI(result.get(position).getLogo());
         int followCinema = result.get(position).getFollowCinema();
         if (followCinema==1){
             holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_default_xhdpi);
         }if (followCinema==2){
-          holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
-<<<<<<< HEAD
+            holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
 
-    }
-        holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
-=======
         }
+        holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+
             @Override
             public void onClick(View v) {
 
@@ -89,7 +85,6 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
                 intent.putExtra("saddress", result.get(position).getAddress());
                 context.startActivity(intent);
 
-<<<<<<< HEAD
 
             }
         });
@@ -97,34 +92,18 @@ public  class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAd
             @Override
             public void onClick(View v) {
                 setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
-
             }
         });
 
     }
-=======
+
+    @Override
+    public int getItemCount() {
+        if (result != null){
+            return result.size();
         }
-        });
-                holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        setOnClick.onClick(result.get(position).getId(),result.get(position).getName(),result.get(position).getAddress());
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
-
-                    }
-                });
-
+        return 0;
     }
-        @Override
-        public int getItemCount() {
-            if (result != null){
-                return result.size();
-            }
-            return 0;
-        }
-
-
-
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final SimpleDraweeView cinema_logo;

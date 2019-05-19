@@ -109,6 +109,7 @@ public class PersonalActivity extends AppCompatActivity implements IMainView {
             case R.id.personal_enilo:
                 break;
             case R.id.personal_pwd:
+
                 break;
             case R.id.relativelayou:
                 break;

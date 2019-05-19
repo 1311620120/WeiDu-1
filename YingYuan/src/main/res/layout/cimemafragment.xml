@@ -5,15 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<<<<<<< HEAD
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
-=======
-
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
-
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -88,11 +84,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/select_Cinemafu_recycler"
-<<<<<<< HEAD
-        android:visibility="gone"></android.support.v7.widget.RecyclerView>
-=======
-        android:visibility="gone"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+        android:visibility="gone"></android.support.v7.widget.RecyclerView>
+
+
+
+
 </RelativeLayout>
 </RelativeLayout>

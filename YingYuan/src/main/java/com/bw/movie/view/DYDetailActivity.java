@@ -1,11 +1,13 @@
 package com.bw.movie.view;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.adapter.MyCinecismAdapter;
+import com.bw.movie.adapter.ShipinAdapter;
 import com.bw.movie.bean.CommentBean;
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.inter.MyInterface;
@@ -31,11 +34,13 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
 
 public class DYDetailActivity extends AppCompatActivity implements MyInterface.ViewInter.DetailInter
         , MyInterface.ViewInter.FollowInter
         , MyInterface.ViewInter.CommentInter
-        , MyInterface.ViewInter.MovieCommentInter{
+        , MyInterface.ViewInter.MovieCommentInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.dy_detail_title_id)
@@ -118,10 +123,12 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
     ImageView includeShortBackId;
     @BindView(R.id.dy_detail_background_id)
     ImageView dyDetailBackgroundId;
+
     private MovieDetailBean bean;
     private List<CommentBean.ResultBean> list = new ArrayList<>();
     private Map<String, String> map;
     private int id;
+    private RecyclerView shipin_recycler;
 
 
     @Override
@@ -129,6 +136,8 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dydetail);
         ButterKnife.bind(this);
+        shipin_recycler = findViewById(R.id.shipin_recycler);
+
         presenterInter = new MyPresenter<>(this);
         id = getIntent().getIntExtra("movieId", 0);
         if (id != 0) {
@@ -195,8 +204,23 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
         if (size > 7) {
             Glide.with(this).load(list.get(7)).into(includePosterImage8Id);
         }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DYDetailActivity.this);
+        linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+        shipin_recycler.setLayoutManager(linearLayoutManager);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.releaseAllVideos();
+    }
     @OnClick({R.id.text_detail_id, R.id.text_short_id, R.id.text_poster_id
             , R.id.text_cinecism_id, R.id.dy_detail_back_id
             , R.id.dy_detail_shop_id, R.id.include_detail_back_id
@@ -210,7 +234,11 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
                 break;
             case R.id.text_short_id:
                 textShortLayoutId.setVisibility(View.VISIBLE);
+                List<MovieDetailBean.ResultBean.ShortFilmListBean> shortFilmList = bean.getResult().getShortFilmList();
+                ShipinAdapter shipinAdapter = new ShipinAdapter(DYDetailActivity.this, shortFilmList);
+                shipin_recycler.setAdapter(shipinAdapter);
                 break;
+
             case R.id.text_poster_id:
                 textPosterLayoutId.setVisibility(View.VISIBLE);
                 break;
@@ -238,9 +266,9 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
                 textCinecismLayoutId.setVisibility(View.GONE);
                 break;
             case R.id.dy_detail_follow_id:
-                if (dyDetailFollowId.isChecked()){
+                if (dyDetailFollowId.isChecked()) {
                     presenterInter.toFollowMovie(bean.getResult().getId());
-                }else {
+                } else {
                     presenterInter.toCancelFollowMovie(bean.getResult().getId());
                 }
                 break;
@@ -311,8 +339,6 @@ public class DYDetailActivity extends AppCompatActivity implements MyInterface.V
         intent.putExtra("commentId", commentId);
         startActivity(intent);
     }
-
-
 
 
 }

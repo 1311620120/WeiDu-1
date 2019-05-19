@@ -1,5 +1,7 @@
 package com.bw.movie.bean;
 
+import android.net.Uri;
+
 import java.util.List;
 
 /**

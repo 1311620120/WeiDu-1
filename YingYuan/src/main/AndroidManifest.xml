@@ -11,12 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -25,6 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +36,10 @@
         <activity android:name="com.bw.movie.activity.GuanzuActivity" />
         <activity android:name="com.bw.movie.activity.ShopingActivity" />
         <activity android:name=".MovieDetailActivity" />
-        <activity android:name=".DYDetailActivity" />
+        <activity
+            android:name=".DYDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="5cda16ab0cafb251e0000975"
@@ -51,21 +49,12 @@
             android:value="Channel ID" />
 
         <activity android:name=".TicketActivity" />
-<<<<<<< HEAD
-
-        <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
-        <activity android:name="com.bw.movie.activity.MinessActivity"></activity>
-
-        <activity android:name=".CommentReplyActivity" />
-        <activity android:name=".ScheduleActivity"></activity>
-
-=======
         <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
         <activity android:name="com.bw.movie.activity.MinessActivity" />
         <activity android:name=".CommentReplyActivity" />
         <activity android:name=".ScheduleActivity" />
-        <activity android:name=".PayActivity"></activity>
->>>>>>> f107b0ad161be316938253bc5ab36156ec2fd93c
+        <activity android:name=".PayActivity" />
+
     </application>
 
 </manifest>

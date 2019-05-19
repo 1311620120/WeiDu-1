@@ -89,6 +89,7 @@ public class MegessActivity extends AppCompatActivity implements IMainView {
         my__magessXrecycler.setAdapter(my_magessAdapter);
         my_magessAdapter.notifyDataSetChanged();
 
+
     }
 
     @Override
