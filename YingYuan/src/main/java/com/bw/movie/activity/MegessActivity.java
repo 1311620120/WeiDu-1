@@ -2,11 +2,9 @@ package com.bw.movie.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,9 +12,8 @@ import com.bw.movie.adapter.My_MagessAdapter;
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_MegessBean;
 import com.bw.movie.presenter.MegessPresenter;
-import com.bw.movie.util.AlertAndAnimationUtils;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;

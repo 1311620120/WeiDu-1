@@ -11,6 +11,7 @@ import com.bw.movie.bean.ReplyBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.ShowMovieBean;
+import com.bw.movie.bean.WXPayBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.util.Api;
 import com.bw.movie.util.RetrofitUtil;
@@ -32,6 +33,21 @@ import okhttp3.ResponseBody;
 public class MyModel implements MyInterface.ModelInter {
     MyCallBack myCallBack;
 
+
+    @Override
+    public void doWXPay(int payType, String orderId, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getInstance().getApi(Api.class)
+                .WXPay(payType,orderId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<WXPayBean>() {
+                    @Override
+                    public void accept(WXPayBean responseBody) throws Exception {
+                        myCallBack.success(responseBody);
+                    }
+                });
+    }
 
     @Override
     public void doSchedule(Map<String, String> map, final MyCallBack myCallBack) {

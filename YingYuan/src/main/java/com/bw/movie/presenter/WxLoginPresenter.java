@@ -4,7 +4,6 @@ import com.bw.movie.bai.BasePresenter;
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.Wx_LoginBean;
 import com.bw.movie.util.RetrofitUtil;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

@@ -1,9 +1,9 @@
 package com.bw.movie.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +14,8 @@ import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_ziliaoBean;
 import com.bw.movie.presenter.MyziliaoPresenter;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
+import com.bw.movie.view.UpdatePwdActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -52,6 +53,7 @@ public class PersonalActivity extends BaseActivity implements IMainView {
     ImageView personalBack;
     @BindView(R.id.personal_head)
     SimpleDraweeView personalHead;
+    private My_ziliaoBean.ResultBean result;
 
 
     @Override
@@ -79,7 +81,7 @@ public class PersonalActivity extends BaseActivity implements IMainView {
     @Override
     public void onCheng(Object o) {
         My_ziliaoBean my_ziliaoBean = (My_ziliaoBean) o;
-        My_ziliaoBean.ResultBean result = my_ziliaoBean.getResult();
+        result = my_ziliaoBean.getResult();
         String headPic = result.getHeadPic();
         personalHead.setImageURI(headPic);
         String nickName = result.getNickName();
@@ -110,7 +112,9 @@ public class PersonalActivity extends BaseActivity implements IMainView {
             case R.id.personal_enilo:
                 break;
             case R.id.personal_pwd:
-
+                Intent intent = new Intent(this,UpdatePwdActivity.class);
+                //intent.putExtra("pwd",result.get)
+                startActivity(intent);
                 break;
             case R.id.relativelayou:
                 break;

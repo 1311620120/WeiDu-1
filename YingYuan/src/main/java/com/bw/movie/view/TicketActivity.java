@@ -9,8 +9,8 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyTicketAdapter;
-import com.bw.movie.adapter.select_cinemaAdapter;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;

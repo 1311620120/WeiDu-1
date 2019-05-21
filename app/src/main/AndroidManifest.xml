@@ -21,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".LaActivity"></activity>
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:exported="true" />
-        <activity android:name=".LaActivity"></activity>
-    </application>
+            android:exported="true" />    </application>
 
 </manifest>

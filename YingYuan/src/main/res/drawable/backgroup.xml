@@ -9,9 +9,6 @@
 
 
 <stroke android:color="#999"/>
-<<<<<<< HEAD
 
-=======
->>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 <corners android:radius="24dp"/>
     </shape>

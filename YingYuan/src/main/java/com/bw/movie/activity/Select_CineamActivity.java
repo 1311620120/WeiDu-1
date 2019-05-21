@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -32,7 +31,9 @@ import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.presenter.Select_CineamIdPresenter;
 import com.bw.movie.view.App;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.view.PayActivity;
+import com.bw.movie.R;
+import com.bw.movie.view.ScheduleActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,7 +59,7 @@ public class Select_CineamActivity extends BaseActivity implements IMainView ,My
     private TextView selecrt_cineam_yuanname;
     private RecyclerCoverFlow Cineam_recycler_flow_id;
     private Select_CineamIdPresenter select_cineamIdPresenter;
-int cinemaId;
+    int cinemaId;
 
     private String name;
     private String logo;
@@ -174,7 +175,7 @@ int cinemaId;
     public void onCheng(Object o) {
         JiCineamBean jiCineamBean =(JiCineamBean)o;
         List<JiCineamBean.ResultBean> result = jiCineamBean.getResult();
-        Log.e("aaaa","movieList"+result+"");
+        //Log.e("aaaa","movieList"+result+"");
         Cineam_recycler_flowAdapter cineam_recycler_flowAdapter = new Cineam_recycler_flowAdapter(Select_CineamActivity.this,result);
       Cineam_recycler_flow_id.setAdapter(cineam_recycler_flowAdapter);
 
@@ -197,21 +198,23 @@ int cinemaId;
 
 
     public void SelectId(int id) {
-        Log.e("aaaa","影片"+id+"");
         Map<String,String> map = new HashMap<>();
         map.put("movieId",id+"");
-        map.put("cinemaId",cinemaId+"");
+        map.put("cinemasId",cinemaId+"");
        presenterInter.toSchedule(map);
-
-
     }
 
     @Override
     public void ScheduleInter(Object object) {
         ScheduleBean scheduleBean=(ScheduleBean)object;
-        List<ScheduleBean.ResultBean> result = scheduleBean.getResult();
-        Cineam_gouAdapter cineam_gouAdapter = new Cineam_gouAdapter(Select_CineamActivity.this,result);
-        selecrt_cineam_recycler.setAdapter(cineam_gouAdapter);
+        if (scheduleBean.getResult() != null){
+            List<ScheduleBean.ResultBean> result = new ArrayList<>();
+            result.addAll(scheduleBean.getResult());
+            Cineam_gouAdapter cineam_gouAdapter = new Cineam_gouAdapter(Select_CineamActivity.this,result);
+            selecrt_cineam_recycler.setAdapter(cineam_gouAdapter);
+        }else {
+            Toast.makeText(this,"没有当前电影排期",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -229,5 +232,15 @@ int cinemaId;
         list.addAll(bean.getResult());
         adapter = new MyCinemaCommentAdapter(list, this);
         recyclerView.setAdapter(adapter);
+    }
+    public void IntentPay(int i, int id, String beginTime, String endTime, String screeningHall,double price) {
+        Intent intent = new Intent(Select_CineamActivity.this, PayActivity.class);
+        intent.putExtra("scheduleId", id);
+        intent.putExtra("seatsTotal", i);
+        intent.putExtra("beginTime", beginTime);
+        intent.putExtra("endTime", endTime);
+        intent.putExtra("screeningHall", screeningHall);
+        intent.putExtra("price", price);
+        startActivity(intent);
     }
 }

@@ -9,7 +9,7 @@ android {
         targetGenDir 'src/main/java'
     }
     defaultConfig {
-        applicationId "com.bw.movie.view"
+        applicationId "com.bw.movie"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -17,6 +17,14 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+    }
+    signingConfigs {
+        debug {
+            storeFile file('movie.keystore')
+            keyAlias "bw_movie"
+            storePassword "123456"
+            keyPassword "123456"
+        }
     }
 
     buildTypes {
@@ -68,7 +76,8 @@ dependencies {
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
-   
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
 
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
@@ -80,6 +89,4 @@ dependencies {
             }
         }
     }
-
-
 }

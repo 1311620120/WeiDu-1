@@ -14,8 +14,7 @@ import android.widget.TextView;
 import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
-import com.bw.movie.view.R;
-import com.bw.movie.view.TicketActivity;
+import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;

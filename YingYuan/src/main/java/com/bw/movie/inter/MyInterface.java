@@ -14,6 +14,7 @@ import java.util.Map;
  */
 public interface MyInterface {
     interface ModelInter{
+        void doWXPay(int payType, String orderId, MyModel.MyCallBack myCallBack);
         void doSchedule(Map<String,String> map, MyModel.MyCallBack myCallBack);
         void doPost(String url, Map<String,String> map , MyModel.MyCallBack myCallBack);
         void doLogin(Map<String,String> map, MyModel.MyCallBack myCallBack);
@@ -37,6 +38,9 @@ public interface MyInterface {
         void doCinemaComment(Map<String,String> map, MyModel.MyCallBack myCallBack);
     }
     interface PresenterInter{
+        void toWXPay(int payType, String orderId);
+        //修改密码
+        void toUpdatePwd(Map<String,String> map);
         //影院信息
         void toCinemaInfo(Map<String,String> map);
         //影院评论
@@ -80,6 +84,9 @@ public interface MyInterface {
         void onDestroy();
     }
     interface ViewInter{
+        interface WXPayInter{
+            void WXPay(Object o);
+        }
         //影院信息
         interface CinemaInfoInter{
             void CinemaInfo(Object object);
@@ -135,6 +142,9 @@ public interface MyInterface {
         interface CinemaFollowInter{
             void Follow(String str);
             void CancelFollow(String str);
+        }
+        interface UpdatePwdInter{
+            void updatePWd(String str);
         }
     }
 }

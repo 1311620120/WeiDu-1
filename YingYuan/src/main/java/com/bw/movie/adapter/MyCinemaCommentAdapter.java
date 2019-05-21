@@ -17,7 +17,7 @@ import com.bw.movie.bean.CommentBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.DYDetailActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -25,8 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.bw.movie.view.R.drawable.com_icon_meiyoudianzan_hdpi;
-import static com.bw.movie.view.R.drawable.com_icon_youdianzan_hdpi;
+import static com.bw.movie.R.drawable.com_icon_meiyoudianzan_hdpi;
+import static com.bw.movie.R.drawable.com_icon_youdianzan_hdpi;
 
 /**
  * @Author: zhang
@@ -51,7 +51,6 @@ public class MyCinemaCommentAdapter extends RecyclerView.Adapter<MyCinemaComment
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Log.e("tag",list.get(position).getCommentUserName());
         holder.simple.setImageURI(list.get(position).getCommentHeadPic());
         holder.simple.getHierarchy().setRoundingParams(RoundingParams.asCircle());
         holder.name.setText(list.get(position).getCommentUserName());

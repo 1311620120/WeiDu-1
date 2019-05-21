@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.bean.MovieDetailBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 import java.util.List;
 

@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/dp_100"
             android:layout_weight="3" />
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/film_fragment_search_id"
             android:layout_width="@dimen/dp_180"
             android:layout_height="@dimen/dp_30"
@@ -39,15 +39,18 @@
                 android:id="@+id/but_search_id"
                 android:src="@mipmap/com_icon_search_default_hdpi"
                 android:layout_marginLeft="@dimen/dp_5"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="搜索"
                 android:id="@+id/text_search_id"
                 android:textColor="#fff"
-                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_20"/>
-        </RelativeLayout>
+        </LinearLayout>
         <recycler.coverflow.RecyclerCoverFlow
             android:id="@+id/film_recycler_flow_id"
             android:layout_width="match_parent"

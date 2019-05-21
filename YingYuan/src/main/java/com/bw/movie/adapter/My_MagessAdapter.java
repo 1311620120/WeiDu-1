@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.bean.My_MegessBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

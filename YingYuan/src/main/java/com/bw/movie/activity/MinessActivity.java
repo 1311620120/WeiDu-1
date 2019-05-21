@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.bw.movie.bai.IMainView;
 import com.bw.movie.presenter.MinssPresenter;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 public class MinessActivity extends BaseActivity implements IMainView {
 

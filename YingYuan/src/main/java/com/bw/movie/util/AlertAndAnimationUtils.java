@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 
 public class AlertAndAnimationUtils {
@@ -40,6 +39,9 @@ public class AlertAndAnimationUtils {
         dialog.setCancelable(false);
     }
 
+    public void showDialog(){
+        dialog.show();//显示对话框
+    }
     /**
      * 隐藏页面
      */

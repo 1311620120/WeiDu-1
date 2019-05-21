@@ -1,14 +1,13 @@
 package com.bw.movie.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bw.movie.R;
 import com.bw.movie.fragment.CinemaFragment;
 import com.bw.movie.fragment.FilmFragment;
 import com.bw.movie.fragment.MyFragment;
 import com.hjm.bottomtabbar.BottomTabBar;
 
-import java.util.HashMap;
 
 public class ViewActivity extends BaseActivity {
 

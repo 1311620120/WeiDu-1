@@ -3,13 +3,10 @@ package com.bw.movie.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bw.movie.adapter.My_CinemaAdapter;
 import com.bw.movie.adapter.My_filmAdapter;
@@ -18,15 +15,10 @@ import com.bw.movie.bean.My_CinemaBean;
 import com.bw.movie.bean.My_filmBean;
 import com.bw.movie.presenter.My_film_cinema;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bw.movie.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class GuanzuActivity extends BaseActivity implements IMainView, View.OnClickListener {
     String userId;
@@ -172,6 +164,7 @@ public class GuanzuActivity extends BaseActivity implements IMainView, View.OnCl
         super.onDestroy();
         if (my_film_cinema==null){
             my_film_cinema.detacher();
+            my_film_cinema = null;
         }
 
     }

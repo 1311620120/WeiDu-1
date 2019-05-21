@@ -3,11 +3,13 @@ package com.bw.movie.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyCinecismAdapter;
 import com.bw.movie.adapter.ShipinAdapter;
 import com.bw.movie.bean.CommentBean;
@@ -34,8 +37,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
 
 public class DYDetailActivity extends BaseActivity implements MyInterface.ViewInter.DetailInter
         , MyInterface.ViewInter.FollowInter
@@ -93,12 +94,6 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
     RelativeLayout textCinecismLayoutId;
     @BindView(R.id.text_short_layout_id)
     RelativeLayout textShortLayoutId;
-    @BindView(R.id.edit_cinecism_comment_id)
-    EditText editCinecismCommentId;
-    @BindView(R.id.edit_cinecism_over_id)
-    TextView editCinecismOverId;
-    @BindView(R.id.edit_cinecism_relative_id)
-    RelativeLayout editCinecismRelativeId;
     @BindView(R.id.include_poster_back_id)
     ImageView includePosterBackId;
     @BindView(R.id.include_poster_image1_id)
@@ -129,6 +124,7 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
     private Map<String, String> map;
     private int id;
     private RecyclerView shipin_recycler;
+    private BottomSheetDialog dialog;
 
 
     @Override
@@ -137,7 +133,6 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
         setContentView(R.layout.activity_dydetail);
         ButterKnife.bind(this);
         shipin_recycler = findViewById(R.id.shipin_recycler);
-
         presenterInter = new MyPresenter<>(this);
         id = getIntent().getIntExtra("movieId", 0);
         if (id != 0) {
@@ -148,6 +143,26 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         includeCinecismRecyclerId.setLayoutManager(layoutManager);
+        dialog = new BottomSheetDialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+        dialog.setContentView(view);
+        final EditText viewById = view.findViewById(R.id.edit_cinecism_comment1_id);
+        dialog.findViewById(R.id.edit_cinecism_over1_id).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String string = viewById.getText().toString();
+                Log.e("tag",string);
+                Map<String, String> map = new HashMap<>();
+                if (string == "") {
+                    Toast.makeText(DYDetailActivity.this, "请输入要评论的内容", Toast.LENGTH_SHORT).show();
+                } else {
+                    map.put("movieId", bean.getResult().getId() + "");
+                    map.put("commentContent", string);
+                    presenterInter.toMovieComment(map);
+                }
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -209,23 +224,12 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
         shipin_recycler.setLayoutManager(linearLayoutManager);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
-            return;
-        }
-        super.onBackPressed();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        JZVideoPlayer.releaseAllVideos();
-    }
+
     @OnClick({R.id.text_detail_id, R.id.text_short_id, R.id.text_poster_id
             , R.id.text_cinecism_id, R.id.dy_detail_back_id
             , R.id.dy_detail_shop_id, R.id.include_detail_back_id
             , R.id.include_cinecism_back_id, R.id.dy_detail_follow_id
-            , R.id.include_cinecism_comment_id, R.id.edit_cinecism_over_id
+            , R.id.include_cinecism_comment_id
             , R.id.include_poster_back_id, R.id.include_short_back_id})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -238,7 +242,6 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
                 ShipinAdapter shipinAdapter = new ShipinAdapter(DYDetailActivity.this, shortFilmList);
                 shipin_recycler.setAdapter(shipinAdapter);
                 break;
-
             case R.id.text_poster_id:
                 textPosterLayoutId.setVisibility(View.VISIBLE);
                 break;
@@ -273,19 +276,7 @@ public class DYDetailActivity extends BaseActivity implements MyInterface.ViewIn
                 }
                 break;
             case R.id.include_cinecism_comment_id:
-                editCinecismRelativeId.setVisibility(View.VISIBLE);
-                break;
-            case R.id.edit_cinecism_over_id:
-                String string = editCinecismCommentId.getText().toString();
-                Map<String, String> map = new HashMap<>();
-                if (string == "") {
-                    Toast.makeText(this, "请输入要评论的内容", Toast.LENGTH_SHORT).show();
-                } else {
-                    map.put("movieId", bean.getResult().getId() + "");
-                    map.put("commentContent", string);
-                    presenterInter.toMovieComment(map);
-                    editCinecismRelativeId.setVisibility(View.GONE);
-                }
+                dialog.show();
                 break;
             case R.id.include_poster_back_id:
                 textPosterLayoutId.setVisibility(View.GONE);

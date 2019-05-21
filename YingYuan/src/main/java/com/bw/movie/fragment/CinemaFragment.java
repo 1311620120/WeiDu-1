@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bw.movie.R;
 import com.bw.movie.activity.GuanzuActivity;
 import com.bw.movie.adapter.My_CinemaAdapter;
 import com.bw.movie.adapter.My_filmAdapter;
@@ -30,7 +31,6 @@ import com.bw.movie.bean.My_filmBean;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
 import com.bw.movie.presenter.Select_Cinema_Presenter;
-import com.bw.movie.view.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;

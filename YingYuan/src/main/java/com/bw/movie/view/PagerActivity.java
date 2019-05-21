@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyPagerAdapter;
 import com.bw.movie.fragmentpage.FourFragment;
 import com.bw.movie.fragmentpage.OneFragment;

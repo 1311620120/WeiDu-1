@@ -6,11 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ViewActivity"
     >
-<<<<<<< HEAD
-=======
 
-    tools:context=".ViewActivity">
->>>>>>> 734b7637320a7dd90639c2837b205afc372c760b
 <com.hjm.bottomtabbar.BottomTabBar
     android:layout_width="match_parent"
     android:layout_height="match_parent"
