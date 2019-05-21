@@ -1,21 +1,11 @@
 package com.bw.movie.view;
 
 import android.app.Application;
-
 import android.database.sqlite.SQLiteDatabase;
-
-
 
 import com.bw.movie.greendao.gen.DaoMaster;
 import com.bw.movie.greendao.gen.DaoSession;
 import com.facebook.drawee.backends.pipeline.Fresco;
-
-
-
-
-
-import com.umeng.commonsdk.UMConfigure;
-
 
 /**
  * @Author: zhang
@@ -24,19 +14,13 @@ import com.umeng.commonsdk.UMConfigure;
  */
 public class App extends Application {
 
-
     public static int id;
-
     public static DaoSession dao;
-
-
 
     @Override
     public void onCreate() {
         super.onCreate();
         Fresco.initialize(this);
-
-        UMConfigure.init(this, "5cda16ab0cafb251e0000975", null, 1, "");
         DaoMaster.DevOpenHelper user = new DaoMaster.DevOpenHelper(this, "user");
         SQLiteDatabase userDatabase = user.getWritableDatabase();
         dao = new DaoMaster(userDatabase).newSession();

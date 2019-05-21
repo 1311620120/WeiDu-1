@@ -13,13 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyCoverFlowAdapter;
 import com.bw.movie.adapter.MyHotMovieAdapter;
 import com.bw.movie.bean.ShowMovieBean;
@@ -27,7 +30,6 @@ import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.DYDetailActivity;
 import com.bw.movie.view.MovieDetailActivity;
-import com.bw.movie.view.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,7 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
     @BindView(R.id.film_recycler_flow_id)
     RecyclerCoverFlow filmRecyclerFlowId;
     @BindView(R.id.film_fragment_search_id)
-    RelativeLayout filmFragmentSearchId;
+    LinearLayout filmFragmentSearchId;
     @BindView(R.id.file_radio_id)
     RadioGroup radioId;
     @BindView(R.id.rb1_file_id)
@@ -89,12 +91,8 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
     private MyHotMovieAdapter adapter2;
     private MyHotMovieAdapter adapter3;
     private MyCoverFlowAdapter adapter;
-    private ObjectAnimator translationX;
-    private ObjectAnimator translationY;
-    private AnimatorSet animatorSet;
     private TranslateAnimation animation;
     ImageView butSearchId;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,18 +128,28 @@ public class FilmFragment extends Fragment implements MyInterface.ViewInter.HotM
         presenterInter.toReleaseMovie();
         presenterInter.toComingSoonMovie();
         animation = new TranslateAnimation(0, -270, 0, 0);
-        animation.setRepeatCount(0);
         animation.setDuration(2000);
-        animation.setFillEnabled(true);
         animation.setFillAfter(true);
-        translationX = ObjectAnimator.ofFloat(filmFragmentSearchId, "translationX", 0, -270, -270);
-        translationY = ObjectAnimator.ofFloat(filmFragmentSearchId, "translationX", -270, 0, 0);
-        animatorSet = new AnimatorSet();
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //filmFragmentSearchId.clearAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         butSearchId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filmFragmentSearchId.setAnimation(animation);
+                filmFragmentSearchId.startAnimation(animation);
             }
         });
         adapter.setOnCLickListener(new MyCoverFlowAdapter.setOnClick() {

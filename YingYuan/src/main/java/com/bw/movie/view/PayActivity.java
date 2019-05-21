@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.R;
+import com.bw.movie.bean.WXPayBean;
 import com.bw.movie.custom.MoveSeatView;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.util.EncryptUtil;
+import com.bw.movie.wxapi.WXPayEntryActivity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PayActivity extends BaseActivity implements MyInterface.ViewInter.TicketInter {
+public class PayActivity extends BaseActivity implements MyInterface.ViewInter.TicketInter,MyInterface.ViewInter.WXPayInter {
 
     MyInterface.PresenterInter presenterInter;
     @BindView(R.id.pay_moveView_id)
@@ -55,6 +56,7 @@ public class PayActivity extends BaseActivity implements MyInterface.ViewInter.T
     private RadioButton weixin;
     private RadioButton zhifubao;
     private TextView textView;
+    private String[] split;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +118,28 @@ public class PayActivity extends BaseActivity implements MyInterface.ViewInter.T
             }
 
         });
-        payMoveViewId.setData(10, 10);
+        int j = seatsTotal/10;
+        payMoveViewId.setData(j, 10);
         View v = LayoutInflater.from(this).inflate(R.layout.popup_pay_item, null);
         final ImageView imageView;
         textView = v.findViewById(R.id.popup_pay_text_id);
         imageView = v.findViewById(R.id.popup_pay_back_id);
         weixin = v.findViewById(R.id.rb1_weixin_id);
         zhifubao = v.findViewById(R.id.rb2_zhifubao_id);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int payType = 0;
+                if (weixin.isChecked()){
+                    payType = 1;
+                }else if (zhifubao.isChecked()){
+                    payType = 2;
+                }
+                if (payType != 0){
+                    presenterInter.toWXPay(payType,split[1]);
+                }
+            }
+        });
         pw = new PopupWindow(v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         pw.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         pw.setOutsideTouchable(true);
@@ -159,7 +176,7 @@ public class PayActivity extends BaseActivity implements MyInterface.ViewInter.T
 
     @Override
     public void Ticket(String str) {
-        String[] split = str.split(",");
+        split = str.split(",");
         Toast.makeText(this, split[0], Toast.LENGTH_SHORT).show();
         if (split[0].equals("下单成功")) {
             pw.showAtLocation(View.inflate(PayActivity.this, R.layout.activity_pay, null), Gravity.BOTTOM, 10, 10);
@@ -202,6 +219,24 @@ public class PayActivity extends BaseActivity implements MyInterface.ViewInter.T
         if (presenterInter != null){
             presenterInter.onDestroy();
             presenterInter = null;
+        }
+    }
+
+    @Override
+    public void WXPay(Object o) {
+        WXPayBean bean = (WXPayBean) o;
+        if (bean.getMessage().equals("支付成功")){
+            Intent intent = new Intent(this, WXPayEntryActivity.class);
+            intent.putExtra("appId",bean.getAppId());
+            intent.putExtra("partnerId",bean.getPartnerId());
+            intent.putExtra("prepayId",bean.getPrepayId());
+            intent.putExtra("nonceStr",bean.getNonceStr());
+            intent.putExtra("timeStamp",bean.getTimeStamp());
+            intent.putExtra("packageValue",bean.getPackageValue());
+            intent.putExtra("sign",bean.getSign());
+            startActivity(intent);
+        }else if (bean.getMessage().equals("ok")){
+
         }
     }
 }

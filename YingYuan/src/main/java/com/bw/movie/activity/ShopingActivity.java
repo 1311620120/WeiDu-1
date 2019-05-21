@@ -18,7 +18,7 @@ import com.bw.movie.bai.IMainView;
 import com.bw.movie.bean.My_ShopBean;
 import com.bw.movie.presenter.My_ShopPresenter;
 import com.bw.movie.view.BaseActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 import java.util.List;
 

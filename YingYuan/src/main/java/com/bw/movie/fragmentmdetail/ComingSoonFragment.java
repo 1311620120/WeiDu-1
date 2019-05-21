@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyDetailMovieAdapter;
 import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.DYDetailActivity;
-import com.bw.movie.view.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;

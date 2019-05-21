@@ -3,11 +3,11 @@ package com.bw.movie.view;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyMovieDetailAdapter;
 import com.bw.movie.fragmentmdetail.ComingSoonFragment;
 import com.bw.movie.fragmentmdetail.HotFragment;

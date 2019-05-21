@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bw.movie.view.R;
+import com.bw.movie.R;
+
 
 /**
  * @Author: zhang

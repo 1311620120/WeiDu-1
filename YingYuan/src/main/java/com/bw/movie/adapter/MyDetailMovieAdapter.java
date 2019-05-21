@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import com.bw.movie.bean.ShowMovieBean;
 import com.bw.movie.fragmentmdetail.HotFragment;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -82,6 +83,7 @@ public class MyDetailMovieAdapter extends RecyclerView.Adapter<MyDetailMovieAdap
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("tag",holder.checkBox.isChecked()+"1");
                 if (holder.checkBox.isChecked()){
                     presenterInter.toFollowMovie(list.get(position).getId());
                 }else {

@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 
 import com.bw.movie.bean.My_ShopBean;
-
-
-;
 import java.util.List;
 
 /**

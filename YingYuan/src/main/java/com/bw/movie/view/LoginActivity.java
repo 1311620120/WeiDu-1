@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.bean.LoginBean;
 import com.bw.movie.bean.MyIdBean;
 import com.bw.movie.greendao.gen.MyIdBeanDao;
@@ -23,6 +24,9 @@ import com.bw.movie.net.NetWork;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.service.NetBroadcastReceiver;
 import com.bw.movie.util.EncryptUtil;
+import com.bw.movie.util.OnClickUtil;
+import com.bw.movie.util.WeiXinUtil;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +35,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
 public class LoginActivity extends BaseActivity implements MyInterface.ViewInter.LoginInter {
+
 
     @BindView(R.id.login_phone_id)
     EditText phoneId;
@@ -46,21 +53,19 @@ public class LoginActivity extends BaseActivity implements MyInterface.ViewInter
     @BindView(R.id.intent_login)
     Button intentLogin;
     MyInterface.PresenterInter presenterInter;
-    public static SharedPreferences sp;
+    public static  SharedPreferences sp;
     public static SharedPreferences.Editor edit;
-    public static String key = "";
     @BindView(R.id.wx_deng_lu_id)
     ImageView wxDengLuId;
     private SharedPreferences user;
     private SharedPreferences.Editor editor;
     private MyIdBeanDao dao;
-
+    String code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
         presenterInter = new MyPresenter<>(this);
         sp = getSharedPreferences("myId", MODE_PRIVATE);
         edit = sp.edit();
@@ -105,26 +110,33 @@ public class LoginActivity extends BaseActivity implements MyInterface.ViewInter
                 break;
             case R.id.intent_login:
                 if (NetWork.getNetWorkState(this) != -1) {
-                    String phone = phoneId.getText().toString();
-                    String pwd = pwdId.getText().toString();
-                    String encrypt = EncryptUtil.encrypt(pwd);
-                    Map<String, String> map = new HashMap<>();
-                    map.put("phone", phone);
-                    map.put("pwd", encrypt);
-                    if (loginCheckboxPwdId.isChecked()) {
-                        editor.putString("phone", phone);
-                        editor.putString("pwd", pwd);
-                        editor.putBoolean("flag", true);
-                    } else {
-                        editor.putBoolean("flag", false);
+                    if (OnClickUtil.onClick.isFastClick()){
+                        String phone = phoneId.getText().toString();
+                        String pwd = pwdId.getText().toString();
+                        String encrypt = EncryptUtil.encrypt(pwd);
+                        Map<String, String> map = new HashMap<>();
+                        map.put("phone", phone);
+                        map.put("pwd", encrypt);
+                        editor.putString("old_pwd",pwd);
+                        Log.e("tag","11111");
+                        if (loginCheckboxPwdId.isChecked()) {
+                            editor.putString("phone", phone);
+                            editor.putString("pwd", pwd);
+                            editor.putBoolean("flag", true);
+                        } else {
+                            editor.putBoolean("flag", false);
+                        }
+                        if (loginCheckboxPhoneId.isChecked()) {
+                            editor.putBoolean("b", true);
+                        } else {
+                            editor.putBoolean("b", false);
+                        }
+                        editor.commit();
+                        presenterInter.toLogin(map);
                     }
-                    if (loginCheckboxPhoneId.isChecked()) {
-                        editor.putBoolean("b", true);
-                    } else {
-                        editor.putBoolean("b", false);
-                    }
-                    editor.commit();
-                    presenterInter.toLogin(map);
+                }else {
+                    Intent intent1 = new Intent(this,NetWorkActivity.class);
+                    startActivity(intent1);
                 }
                 break;
         }
@@ -136,7 +148,6 @@ public class LoginActivity extends BaseActivity implements MyInterface.ViewInter
         if (bean != null) {
             Toast.makeText(this, bean.getMessage(), Toast.LENGTH_SHORT).show();
             if (bean.getMessage().equals("登陆成功")) {
-                key = bean.getMessage();
                 dao.deleteAll();
                 runOnUiThread(new Runnable() {
                     @Override
@@ -161,8 +172,18 @@ public class LoginActivity extends BaseActivity implements MyInterface.ViewInter
 
     @OnClick(R.id.wx_deng_lu_id)
     public void onViewClicked() {
+        if (!WeiXinUtil.success(LoginActivity.this)) {
+            Toast.makeText(LoginActivity.this, "请先安装应用", Toast.LENGTH_SHORT).show();
+        } else {
+            //  验证
+            SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test_neng";
+            WeiXinUtil.reg(LoginActivity.this).sendReq(req);
 
+        }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -171,6 +192,4 @@ public class LoginActivity extends BaseActivity implements MyInterface.ViewInter
             presenterInter = null;
         }
     }
-
-
 }

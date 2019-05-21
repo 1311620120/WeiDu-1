@@ -1,5 +1,7 @@
 package com.bw.movie.data;
 
+import retrofit2.http.POST;
+
 /**
  * @Author: zhang
  * @Date: 2019/5/11 10:20
@@ -30,4 +32,9 @@ public class Content {
     public static final String FollowCinema = "movieApi/cinema/v1/verify/followCinema";
 
     public static final String CancelFollowCinema = "movieApi/cinema/v1/verify/cancelFollowCinema";
+    //修改密码
+    public static final String UpdatePwd = "movieApi/user/v1/verify/modifyUserPwd";
+
+
+
 }

@@ -27,7 +27,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

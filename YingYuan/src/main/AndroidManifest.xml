@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bw.movie.view">
+    package="com.bw.movie">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -10,38 +10,57 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+<<<<<<< HEAD
+=======
 
-
-
-
-
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
     <application
-        android:name=".App"
+        android:name=".view.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PagerActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ViewActivity" />
-        <activity android:name="com.bw.movie.activity.PersonalActivity" />
-        <activity android:name="com.bw.movie.activity.MegessActivity" />
-        <activity android:name="com.bw.movie.activity.GuanzuActivity" />
-        <activity android:name="com.bw.movie.activity.ShopingActivity" />
-        <activity android:name=".MovieDetailActivity" />
-        <activity android:name=".DYDetailActivity" />
+        <activity android:name=".view.PagerActivity" />
+        <activity
+            android:name=".view.LoginActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".view.RegisterActivity" />
+        <activity
+            android:name=".view.ViewActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.PersonalActivity" />
+        <activity android:name=".activity.MegessActivity" />
+        <activity android:name=".activity.GuanzuActivity" />
+        <activity android:name=".activity.ShopingActivity" />
+        <activity android:name=".view.MovieDetailActivity" />
+        <activity
+            android:name=".view.DYDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.TicketActivity" />
+        <activity android:name=".activity.Select_CineamActivity" />
+        <activity android:name=".activity.MinessActivity" />
+        <activity android:name=".view.CommentReplyActivity" />
+        <activity android:name=".view.ScheduleActivity" />
+        <activity android:name=".view.PayActivity" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
 
+<<<<<<< HEAD
+        <receiver android:name=".service.NetBroadcastReceiver">
+=======
         <meta-data
             android:name="5cda16ab0cafb251e0000975"
             android:value="YOUR_APP_KEY" />
@@ -52,16 +71,27 @@
         <activity android:name=".TicketActivity" />
 
         <activity android:name="com.bw.movie.activity.Select_CineamActivity" />
-        <activity android:name="com.bw.movie.activity.MinessActivity"></activity>
-
+        <activity android:name="com.bw.movie.activity.MinessActivity" />
         <activity android:name=".CommentReplyActivity" />
-        <activity android:name=".ScheduleActivity"></activity>
-        <activity android:name=".PayActivity"></activity>
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".PayActivity" />
+
         <receiver android:name="com.bw.movie.service.NetBroadcastReceiver">
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+<<<<<<< HEAD
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            />
+        <activity android:name=".view.UpdatePwdActivity" />
+        <activity android:name=".view.NetWorkActivity"></activity>
+=======
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
     </application>
 
 </manifest>

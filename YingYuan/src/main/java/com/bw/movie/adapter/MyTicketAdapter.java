@@ -7,12 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -46,24 +47,15 @@ public class MyTicketAdapter extends  RecyclerView.Adapter<MyTicketAdapter.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-
                 holder.cineam_diess.setText(result.get(position).getAddress());
                 holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
                 holder.cineam_title.setText(result.get(position).getName());
                 holder.cinema_logo.setImageURI(result.get(position).getLogo());
-        int followCinema = result.get(position).getFollowCinema();
-        if (followCinema==1){
-            holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_default_xhdpi);
-        }if (followCinema==2){
-          holder.cinema_dianzan.setImageResource(R.mipmap.com_icon_collection_selected_xhdpi);
-
-    }
-        holder.cineam_diess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        if (result.get(position).getFollowCinema() == 2)
+            holder.cinema_dianzan.setChecked(false);
+        else {
+            holder.cinema_dianzan.setChecked(true);
+        }
 
         holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +79,7 @@ public class MyTicketAdapter extends  RecyclerView.Adapter<MyTicketAdapter.ViewH
         private final TextView cineam_title;
         private final TextView cineam_juli;
         private final TextView cineam_diess;
-        private final ImageView cinema_dianzan;
+        private final CheckBox cinema_dianzan;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -13,7 +13,7 @@ import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.JiCineamBean;
 
 import com.bw.movie.bean.ShowMovieBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -58,7 +58,6 @@ public class Cineam_recycler_flowAdapter extends RecyclerCoverFlow.Adapter<Cinea
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Log.e("aaaa","影片Id"+result.get(position).getId());
                activity.SelectId(result.get(position).getId());
 
            }

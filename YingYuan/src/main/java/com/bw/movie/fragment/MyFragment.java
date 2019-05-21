@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.activity.GuanzuActivity;
 import com.bw.movie.activity.MegessActivity;
 import com.bw.movie.activity.MinessActivity;
@@ -40,7 +41,6 @@ import com.bw.movie.presenter.HeadPicPresenter;
 import com.bw.movie.presenter.MyziliaoPresenter;
 import com.bw.movie.view.LoginActivity;
 import com.bw.movie.view.MainActivity;
-import com.bw.movie.view.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;

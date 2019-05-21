@@ -16,7 +16,7 @@ import com.bw.movie.bean.CommentBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
 import com.bw.movie.view.DYDetailActivity;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -24,8 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.bw.movie.view.R.drawable.com_icon_meiyoudianzan_hdpi;
-import static com.bw.movie.view.R.drawable.com_icon_youdianzan_hdpi;
+import static com.bw.movie.R.drawable.com_icon_meiyoudianzan_hdpi;
+import static com.bw.movie.R.drawable.com_icon_youdianzan_hdpi;
 
 /**
  * @Author: zhang

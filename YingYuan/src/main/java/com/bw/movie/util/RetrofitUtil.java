@@ -72,12 +72,12 @@ public class RetrofitUtil {
     }
     public <T>T getApi(Class<T> service){
         List<MyIdBean> list = App.dao.getMyIdBeanDao().loadAll();
-        Log.e("tag",list.toString());
+       // Log.e("tag",list.toString());
         if (list.size() != 0){
             userId = list.get(0).getUserId();
             sessionId = list.get(0).getSessionId();
         }
-        Log.i("tag", this.userId + this.sessionId);
+        //Log.i("tag", this.userId + this.sessionId);
         return getRetrofit().create(service);
     }
     public class HttpLogging implements HttpLoggingInterceptor.Logger{

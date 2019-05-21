@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Adapter;
 import android.widget.TextView;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyScheduleAdapter;
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ScheduleBean;
@@ -76,7 +77,6 @@ public class ScheduleActivity extends BaseActivity implements MyInterface.ViewIn
             map.put("cinemasId", cinemasId + "");
             presenterInter.toSchedule(map);
         }
-
     }
 
     @Override

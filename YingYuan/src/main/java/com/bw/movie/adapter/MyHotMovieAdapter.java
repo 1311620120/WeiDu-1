@@ -12,8 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.bean.ShowMovieBean;
-import com.bw.movie.data.Content;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.bw.movie.adapter.MyReplayAdapter;
 import com.bw.movie.bean.ReplyBean;
 import com.bw.movie.inter.MyInterface;

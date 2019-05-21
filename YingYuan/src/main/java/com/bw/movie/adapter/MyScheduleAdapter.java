@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.bean.ScheduleBean;
-import com.bw.movie.bean.Select_CinemaIdBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.bw.movie.view.ScheduleActivity;
 
 import java.util.List;
@@ -48,8 +47,8 @@ public class MyScheduleAdapter extends RecyclerView.Adapter <MyScheduleAdapter.V
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.IntentPay(result.get(position).getId(),
-                        result.get(position).getSeatsTotal(),
+                activity.IntentPay(result.get(position).getSeatsTotal(),
+                        result.get(position).getId(),
                         result.get(position).getBeginTime(),
                         result.get(position).getEndTime(),
                         result.get(position).getScreeningHall(),

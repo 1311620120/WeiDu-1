@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">YingYuan</string>
+
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+
+    <string name="pay_by_wx_title">通过微信支付</string>
 </resources>

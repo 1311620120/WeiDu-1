@@ -18,8 +18,7 @@ import com.bw.movie.activity.Select_CineamActivity;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.inter.MyInterface;
 import com.bw.movie.presenter.MyPresenter;
-import com.bw.movie.view.App;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +33,9 @@ import retrofit2.http.HEAD;
  * @Date: 2019/5/13 19:37:51
  * @Description:
  */
-public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> implements MyInterface.ViewInter.CinemaFollowInter{
+
+public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAdapter.ViewHolder> {
+
     Context context;
     List<Select_CinemaBean.ResultBean> result;
     MyInterface.PresenterInter presenterInter;
@@ -47,19 +48,6 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
     public void setOnClickListener(setOnClick onClickListener){
         setOnClick = onClickListener;
     }
-
-
-
-    @Override
-    public void Follow(String str) {
-        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void CancelFollow(String str) {
-        Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
-    }
-
     public interface setOnClick{
         void onClick(int j,String name,String cont);
     }
@@ -73,32 +61,15 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-                holder.cineam_diess.setText(result.get(position).getAddress());
-                holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
-                holder.cineam_title.setText(result.get(position).getName());
-                holder.cinema_logo.setImageURI(result.get(position).getLogo());
-        if (result.get(position).getFollowCinema() == 2) {
-            holder.checkBox.setChecked(false);
-        }else {
-            holder.checkBox.setChecked(true);
-        }
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("tag",holder.checkBox.isChecked()+"");
-                if (holder.checkBox.isChecked()){
-                    presenterInter.toFollowCinema(result.get(position).getId());
-                }else {
-                    presenterInter.toCancelFollowCinema(result.get(position).getId());
-                }
-            }
-        });
+
+
+        holder.cineam_diess.setText(result.get(position).getAddress());
+        holder.cineam_juli.setText(result.get(position).getCommentTotal()+"km");
+        holder.cineam_title.setText(result.get(position).getName());
+        holder.cinema_logo.setImageURI(result.get(position).getLogo());
         holder.cinema_logo.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(context, Select_CineamActivity.class);
                 intent.putExtra("id",result.get(position).getId());
                 intent.putExtra("name",result.get(position).getName());
@@ -109,8 +80,6 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
 
             }
         });
-
-
     }
 
     @Override
@@ -138,4 +107,3 @@ public class select_cinemaAdapter extends  RecyclerView.Adapter<select_cinemaAda
         }
     }
 }
-

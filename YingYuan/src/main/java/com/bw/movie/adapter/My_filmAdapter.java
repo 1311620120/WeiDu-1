@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bw.movie.bean.My_filmBean;
-import com.bw.movie.view.R;
+import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;

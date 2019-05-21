@@ -28,6 +28,28 @@ public class MyPresenter<T> implements MyInterface.PresenterInter {
     }
 
     @Override
+    public void toWXPay(int payType, String orderId) {
+        final MyInterface.ViewInter.WXPayInter wxPayInter = (MyInterface.ViewInter.WXPayInter) tt;
+        modelInter.doWXPay(payType, orderId, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                wxPayInter.WXPay(object);
+            }
+        });
+    }
+
+    @Override
+    public void toUpdatePwd(Map<String, String> map) {
+        final MyInterface.ViewInter.UpdatePwdInter updatePwdInter = (MyInterface.ViewInter.UpdatePwdInter) tt;
+        modelInter.doPost(Content.UpdatePwd, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object object) {
+                updatePwdInter.updatePWd((String) object);
+            }
+        });
+    }
+
+    @Override
     public void toCinemaInfo(Map<String, String> map) {
         final MyInterface.ViewInter.CinemaInfoInter cinemaInfoInter = (MyInterface.ViewInter.CinemaInfoInter) tt;
         modelInter.doCinemaInfo(map, new MyModel.MyCallBack() {

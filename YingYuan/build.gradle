@@ -9,7 +9,7 @@ android {
         targetGenDir 'src/main/java'
     }
     defaultConfig {
-        applicationId "com.bw.movie.view"
+        applicationId "com.bw.movie"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -18,6 +18,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    signingConfigs {
+        debug {
+            storeFile file('movie.keystore')
+            keyAlias "bw_movie"
+            storePassword "123456"
+            keyPassword "123456"
+        }
+    }
 
     buildTypes {
         release {
@@ -25,6 +33,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 
 }
 
@@ -65,6 +74,11 @@ dependencies {
     implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
     //上下拉
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
             def requested = details.requested
@@ -75,12 +89,4 @@ dependencies {
             }
         }
     }
-    implementation files('libs/umeng-common-2.0.2.jar')
-    implementation files('libs/umeng-share-core-6.9.4.jar')
-    implementation files('libs/umeng-share-wechat-full-6.9.4.jar')
-    implementation files('libs/umeng-shareboard-widget-6.9.4.jar')
-    implementation files('libs/umeng-sharetool-6.9.4.jar')
-    implementation files('libs/wechat-sdk-android-without-mta-5.1.4.jar')
-
-
 }
