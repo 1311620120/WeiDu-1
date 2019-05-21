@@ -16,6 +16,15 @@ import com.bw.movie.bean.ReplyBean;
 import com.bw.movie.bean.ScheduleBean;
 import com.bw.movie.bean.Select_CinemaBean;
 import com.bw.movie.bean.Select_CinmaBeanFu;
+<<<<<<< HEAD
+=======
+
+
+import com.bw.movie.bean.MovieDetailBean;
+import com.bw.movie.bean.ShowMovieBean;
+
+
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
 import com.bw.movie.bean.MovieDetailBean;
 import com.bw.movie.bean.ShowMovieBean;
 
@@ -35,6 +44,10 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -123,12 +136,22 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
                                                @Header("sessionId") String sessionId,
                                                @Query("cinemasId") int cinemasId,
                                                @Query("movieId") int movieId);
+<<<<<<< HEAD
        // 意见反馈  http://172.17.8.100/movieApi/tool/v1/verify/recordFeedBack
        @FormUrlEncoded
        @POST("movieApi/tool/v1/verify/recordFeedBack")
        Observable<ResponseBody> minessss(@Header("userId") String userId,
                                             @Header("sessionId") String sessionId,
                                             @Field("content") String content);
+=======
+   // 意见反馈  http://172.17.8.100/movieApi/tool/v1/verify/recordFeedBack
+   @FormUrlEncoded
+   @POST("movieApi/tool/v1/verify/recordFeedBack")
+   Observable<ResponseBody> minessss(@Header("userId") String userId,
+                                        @Header("sessionId") String sessionId,
+                                        @Field("content") String content);
+
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
 
     //根据影院Id 影院即将上映电影排挡
     @GET("movieApi/movie/v1/findMovieListByCinemaId")
@@ -148,17 +171,28 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
     @GET("movieApi/movie/v1/findMovieScheduleList")
     Observable<ScheduleBean> requestSchedule(@QueryMap Map<String,String> map);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
     //购票下单
     @FormUrlEncoded
     @POST("movieApi/movie/v1/verify/buyMovieTicket")
     Observable<ResponseBody> requestTicket(@FieldMap Map<String,String> map);
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
     //微信登录
     @FormUrlEncoded
     @POST("movieApi/user/v1/weChatBindingLogin")
+<<<<<<< HEAD
     Observable <Wx_LoginBean> WX_Login(@Field("code") String code);
+=======
+    Observable <Wx_LoginBean> WX_Login(@Query("code") String code);
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
 
     //影院 关注/取关
     @GET()
@@ -169,6 +203,7 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
     //查询影院信息明细
     @GET("movieApi/cinema/v1/findCinemaInfo")
     Observable<CinemaInfoBean> requestCinemaInfo(@QueryMap Map<String,String> map);
+<<<<<<< HEAD
 
 
     //微信支付
@@ -176,4 +211,6 @@ Observable<ScheduleBean> SelectCinemaId(@Header("userId") String userId,
     @POST("movieApi/movie/v1/verify/pay")
     Observable <WXPayBean> WXPay(@Field("payType") int payType, @Field("orderId") String orderId);
 
+=======
+>>>>>>> 8cca8c9bb166f3f64f16443d1f7491db2945fc40
 }
